@@ -12,7 +12,11 @@ Pull the Dockerfile and docker-compose.yml
 
 ## Running the application
 
-`docker-compose up`
+`docker compose up`
+
+You might need to run it with sudo
+
+`sudo docker compose up`
 
 ## Accessing Your Application
 
