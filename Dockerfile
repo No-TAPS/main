@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install any dependencies
-RUN npm install
+# RUN npm install
 
 # Bundle your app's source code inside the Docker image
 COPY . .
