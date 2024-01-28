@@ -59,5 +59,3 @@ var warningicon = L.icon({
 L.marker([36.98853587549755, -122.06590851341495], {icon: warningicon}).addTo(map);
 
 
-
-
