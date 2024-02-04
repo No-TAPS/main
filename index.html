@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No-Taps</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 900px;
-        }
-    </style>
+    <title>Parking Lot Clicks</title>
 </head>
-
 <body>
-    <script src="entry.js"></script>
-    <script src="require.js"></script>
-    <script src="mapDataDelegate.js" type="module"></script>
-    <button name="lot1">Parking lot 1 test</button>
-    <button name="lot2">Parking lot 2 test</button>
-  
-    <a href="map.html">Display map for frontend testing</a>
+    <button onclick="incrementParkingLotClicks(1)">Increment Parking Lot 1</button>
+    <button onclick="incrementParkingLotClicks(2)">Increment Parking Lot 2</button>
+    <a href="map.html">Open map page for frontend testing</a>
 
+    <script>
+        function incrementParkingLotClicks(parkingLotId) {
+            fetch('http://localhost:3000/updateClicks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ parkingLotId }),
+            })
+            .then(response => response.json())
+            .then(data => alert(`Parking Lot ID ${parkingLotId} has ${data.clicks} clicks.`))
+            .catch((error) => console.error('Error:', error));
+        }
+    </script>
 </body>
-
 </html>
