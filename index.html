@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking Lot Clicks</title>
+</head>
+<body>
+    <button onclick="incrementParkingLotClicks(1)">Increment Parking Lot 1</button>
+    <button onclick="incrementParkingLotClicks(2)">Increment Parking Lot 2</button>
+    <a href="map.html">Open map page for frontend testing</a>
+
+    <script>
+        function incrementParkingLotClicks(parkingLotId) {
+            fetch('http://localhost:3000/updateClicks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ parkingLotId }),
+            })
+            .then(response => response.json())
+            .then(data => alert(`Parking Lot ID ${parkingLotId} has ${data.clicks} clicks.`))
+            .catch((error) => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
