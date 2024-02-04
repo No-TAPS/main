@@ -17,12 +17,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     .openPopup();
 
 
+///////////// Ramdom RGB color
+function getRandomRGBColor() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return `rgb(${r},${g},${b})`;
+}
+
 //////////// coordinate
 function handleFile() {
     console.log("starting");
-    var fileName = 'Parking Cords.xlsx';
+
+    var url = 'http://localhost:3000/ParkingCordsExcel';
+
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', fileName, true);
+    xhr.open('GET', url, true);
     xhr.responseType = 'arraybuffer';
 
     xhr.onload = function (e) {
@@ -42,10 +52,9 @@ function handleFile() {
                 }
             });
 
-            // Process the data and add polygons to the map
             processDataAndDisplayPolygons(jsonData);
         } else {
-            alert('Failed to load the Excel file. Please check the file path and try again.');
+            alert('Failed to load the Excel file. Please check the server route and try again.');
         }
     };
 
@@ -56,31 +65,59 @@ function processDataAndDisplayPolygons(data) {
     console.log('Processing data and displaying polygons...');
 
     data.forEach(function (row) {
-        // Extract area number and name
-        var areaNumber = row['Area Number'];
-        var areaName = row['Area Name'];
+        // Check if the row has valid keys
+        if ('Lot Numbers' in row && 'names' in row) {
+            // Extract area number and name
+            var areaNumber = row['Lot Numbers'];
+            var areaName = row['names'];
 
-        // Extract and process the coordinates
-        var coordinates = [];
-        for (var key in row) {
-            if (key !== 'Area Number' && key !== 'Area Name') {
-                var coords = row[key].split(',').map(function(coord) {
-                    return parseFloat(coord.trim());
-                });
-                coordinates.push(coords);
+            // Extract and process the coordinates
+            var coordinates = [];
+            for (var key in row) {
+                if (key !== 'Lot Numbers' && key !== 'names') {
+                    // Check if the value is a string containing coordinates
+                    if (typeof row[key] === 'string') {
+                        var coordsList = row[key].split('\t');
+                        for (var i = 0; i < coordsList.length; i++) {
+                            var coords = coordsList[i].split(',').map(function(coord) {
+                                return parseFloat(coord.trim());
+                            });
+
+                            // Check if coordinates are valid (not NaN)
+                            if (!coords.some(isNaN) && coords.length === 2) {
+                                coordinates.push(coords);
+                            } else {
+                                console.error(`Invalid coordinates for area ${areaNumber}: ${coords}`);
+                            }
+                        }
+                    } else {
+                        console.error(`Invalid coordinates format for area ${areaNumber}`);
+                    }
+                }
             }
-        }
 
-        // Create a polygon and add it to the map
-        L.polygon(coordinates, { color: 'blue', fillOpacity: 0.5 })
-            .bindPopup(`<b>${areaName}</b><br>Area Number: ${areaNumber}`)
-            .addTo(map);
+            // Check if any valid coordinates were extracted
+            if (coordinates.length > 0) {
+                // debug
+                // console.log(`Area Number: ${areaNumber}`);
+                // console.log(`Area Name: ${areaName}`);
+                // console.log(`Coordinates:`, coordinates);
+
+                // Create a polygon and add it to the map
+                L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.3 })
+                    .bindPopup(`<b>${areaName}</b><br>Area Number: ${areaNumber}`)
+                    .addTo(map);
+            } else {
+                console.error(`No valid coordinates found for area ${areaNumber}`);
+            }
+        } else {
+            console.error(`Invalid area number or name for row:`, row);
+        }
     });
 
     console.log('Polygons displayed.');
 }
 
-  
 
 // var westremote = L.polygon([
 //     [36.98874277751547, -122.06693840060198],
@@ -116,16 +153,16 @@ function processDataAndDisplayPolygons(data) {
 
 
 //////////// pop up window
-// var popup = L.popup();
+var popup = L.popup();
 
-// function onMapClick(e) {
-//     popup
-//         .setLatLng(e.latlng)
-//         .setContent("You clicked the map at " + e.latlng.toString())
-//         .openOn(map);
-// }
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
 
-// map.on('click', onMapClick);
+map.on('click', onMapClick);
 
 ///////////// icon
 // var warningicon = L.icon({

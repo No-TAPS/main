@@ -9,6 +9,13 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes to allow cross-origin requests
 
+// Serve the Excel file at a specific route
+app.get('/ParkingCordsExcel', (req, res) => {
+    const path = './Parking Cords.xlsx'; // Update the path to match the location of your Excel file
+    const file = fs.createReadStream(path);
+    file.pipe(res);
+});
+
 // POST route to increment clicks
 app.post('/updateClicks', (req, res) => {
     const { parkingLotId } = req.body;
