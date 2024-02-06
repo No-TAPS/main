@@ -7,17 +7,24 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Enable CORS for all routes to allow cross-origin requests
+app.use(cors()); // Enable CORS
 
-// POST route to increment clicks
-app.post('/updateClicks', (req, res) => {
-    const { parkingLotId } = req.body;
+// POST route to update parking lot data
+app.post('/updateParkingLot', (req, res) => {
+    const { parkingLotId, fullnessRating } = req.body;
     const path = './mapData.json';
 
     fs.readFile(path, (err, data) => {
         let mapData = err ? {} : JSON.parse(data.toString());
 
-        mapData[parkingLotId] = (mapData[parkingLotId] || 0) + 1;
+        // Initialize if parking lot ID doesn't exist
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = { clicks: 0, fullness: 0 };
+        }
+
+        // Increment clicks and update fullness rating
+        mapData[parkingLotId].clicks += 1;
+        mapData[parkingLotId].fullness = fullnessRating;
 
         fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
             if (writeError) {
@@ -25,7 +32,7 @@ app.post('/updateClicks', (req, res) => {
                 return;
             }
 
-            res.send({ success: true, parkingLotId, clicks: mapData[parkingLotId] });
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
         });
     });
 });

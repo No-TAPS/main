@@ -5,23 +5,34 @@
     <title>Parking Lot Clicks</title>
 </head>
 <body>
-    <button onclick="incrementParkingLotClicks(1)">Increment Parking Lot 1</button>
-    <button onclick="incrementParkingLotClicks(2)">Increment Parking Lot 2</button>
+    <h3>Parking Lot 1</h3>
+    <label for="fullnessRating">Fullness Rating:</label>
+    <select id="fullnessRating">
+        <option value="0">0 - Empty</option>
+        <option value="1">1 - Few cars</option>
+        <option value="2">2 - Half full</option>
+        <option value="3">3 - Many cars</option>
+        <option value="4">4 - Full</option>
+    </select>
+    <button onclick="updateParkingLot(1)">Update Parking Lot 1</button>
     <a href="map.html">Open map page for frontend testing</a>
 
     <script>
-        function incrementParkingLotClicks(parkingLotId) {
-            fetch('http://localhost:3000/updateClicks', {
+        function updateParkingLot(parkingLotId) {
+            const fullnessRating = document.getElementById('fullnessRating').value;
+
+            fetch('http://localhost:3000/updateParkingLot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ parkingLotId }),
+                body: JSON.stringify({ parkingLotId, fullnessRating: parseInt(fullnessRating, 10) }),
             })
             .then(response => response.json())
-            .then(data => alert(`Parking Lot ID ${parkingLotId} has ${data.clicks} clicks.`))
+            .then(data => alert(`Parking Lot ID ${parkingLotId} updated. Clicks: ${data.data.clicks}, Fullness: ${data.data.fullness}`))
             .catch((error) => console.error('Error:', error));
         }
     </script>
+</body>
 </body>
 </html>
