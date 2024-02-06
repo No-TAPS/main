@@ -9,6 +9,13 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS
 
+// Serve the Excel file at a specific route
+app.get('/ParkingCordsExcel', (req, res) => {
+    const path = './Parking Cords.xlsx'; // Update the path to match the location of your Excel file
+    const file = fs.createReadStream(path);
+    file.pipe(res);
+});
+
 // POST route to update parking lot data
 app.post('/updateParkingLot', (req, res) => {
     const { parkingLotId, fullnessRating } = req.body;
