@@ -16,6 +16,19 @@ app.get('/ParkingCordsExcel', (req, res) => {
     file.pipe(res);
 });
 
+app.get('./ParkingCordsJson', (req, res) => {
+    const path = './parking_data.json';
+    const { parkingLotId } = req.body;
+    fs.readFile(path, (err, data) => {
+        let cordData = err ? {} : JSON.parse(data.toString());
+        if (!cordData[parkingLotId].perimeter) {
+            res.send('Error: no perimeter defined');
+        }
+
+        res.send(cordData[parkingLotId].perimeter);
+    });
+} );
+
 // POST route to update parking lot data
 app.post('/updateParkingLot', (req, res) => {
     const { parkingLotId, fullnessRating } = req.body;
