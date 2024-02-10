@@ -31,7 +31,7 @@ app.get('./ParkingCordsJson', (req, res) => {
 
 // POST route to update parking lot data
 app.post('/updateParkingLot', (req, res) => {
-    const { parkingLotId, fullnessRating } = req.body;
+    const { parkingLotId, fullnessRating, isTaps } = req.body;
     const path = './mapData.json';
 
     fs.readFile(path, (err, data) => {
@@ -39,12 +39,13 @@ app.post('/updateParkingLot', (req, res) => {
 
         // Initialize if parking lot ID doesn't exist
         if (!mapData[parkingLotId]) {
-            mapData[parkingLotId] = { clicks: 0, fullness: 0 };
+            mapData[parkingLotId] = { clicks: 0, fullness: 0, tapsPresence: false};
         }
 
         // Increment clicks and update fullness rating
         mapData[parkingLotId].clicks += 1;
         mapData[parkingLotId].fullness = fullnessRating;
+        mapData[parkingLotId].tapsPresence = isTaps
 
         fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
             if (writeError) {
