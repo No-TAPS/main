@@ -26,8 +26,52 @@ function getRandomRGBColor() {
 }
 
 //////////// coordinate
+function readjson() {
+    var jsonURL = 'http://localhost:3000/ParkingCordsJson';
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', jsonURL, true);
+    xhr.responseType = 'json';
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var jsonData = xhr.response;
+            // parse the data
+            for (var key in jsonData) {
+                if (jsonData.hasOwnProperty(key)) {
+                    var area = jsonData[key];
+                    var coordinates = area.perimeter.map(function(coord){
+                        return [coord[0], coord[1]];
+                    });
+
+                    // information on the popup
+                    var popupContent = `
+                        <b>Area Number ${key}</b><br>
+                        Name: ${area.name}<br>
+                        Address: ${area.address}<br>
+                        Permits: ${area.permits.join(', ')}<br>
+                        R/C permit After 5: ${area.r_c_after_5}<br>
+                        Parkmobile Hourly: ${area.parkmobile_hourly}<br>
+                        Parkmobile Daily: ${area.parkmobil_daily}<br>
+                        Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
+                    `;
+
+                    L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.3 })
+                        .bindPopup(popupContent)
+                        .addTo(map);
+                }
+            }
+        } else {
+            console.error('Failed to load Json File.');
+        }
+    };
+
+    xhr.send();
+}
+
+
+
 function handleFile() {
-    console.log("starting");
+    //console.log("starting");
 
     var url = 'http://localhost:3000/ParkingCordsExcel';
 
@@ -35,7 +79,7 @@ function handleFile() {
     xhr.open('GET', url, true);
     xhr.responseType = 'arraybuffer';
 
-    xhr.onload = function (e) {
+    xhr.onload = function () {
         if (xhr.status === 200) {
             console.log('Excel file loaded successfully.');
 
@@ -52,7 +96,7 @@ function handleFile() {
                 }
             });
 
-            processDataAndDisplayPolygons(jsonData);
+            //processDataAndDisplayPolygons(jsonData);
         } else {
             alert('Failed to load the Excel file. Please check the server route and try again.');
         }
@@ -155,6 +199,7 @@ function processDataAndDisplayPolygons(data) {
 //////////// pop up window
 var popup = L.popup();
 
+//tool for get the coordinates
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
@@ -177,4 +222,6 @@ map.on('click', onMapClick);
 
 // L.marker([36.98853587549755, -122.06590851341495], {icon: warningicon}).addTo(map);
 
-handleFile();
+//handleFile();
+readjson();
+

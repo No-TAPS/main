@@ -7,27 +7,32 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Enable CORS
+app.use(cors()); 
 
-// Serve the Excel file at a specific route
 app.get('/ParkingCordsExcel', (req, res) => {
-    const path = './Parking Cords.xlsx'; // Update the path to match the location of your Excel file
+    const path = './Parking Cords.xlsx'; 
     const file = fs.createReadStream(path);
     file.pipe(res);
 });
 
-app.get('./ParkingCordsJson', (req, res) => {
-    const path = './parking_data.json';
-    const { parkingLotId } = req.body;
-    fs.readFile(path, (err, data) => {
-        let cordData = err ? {} : JSON.parse(data.toString());
-        if (!cordData[parkingLotId].perimeter) {
-            res.send('Error: no perimeter defined');
-        }
+app.get('/ParkingCordsJson', (req, res) => {
+    const path = './parking_data.json'; 
+    const file = fs.createReadStream(path);
+    file.pipe(res);
+});
 
-        res.send(cordData[parkingLotId].perimeter);
-    });
-} );
+// app.get('./ParkingCordsJson', (req, res) => {
+//     const path = './parking_data.json';
+//     const { parkingLotId } = req.body;
+//     fs.readFile(path, (err, data) => {
+//         let cordData = err ? {} : JSON.parse(data.toString());
+//         if (!cordData[parkingLotId].perimeter) {
+//             res.send('Error: no perimeter defined');
+//         }
+
+//         res.send(cordData[parkingLotId].perimeter);
+//     });
+// } );
 
 // POST route to update parking lot data
 app.post('/updateParkingLot', (req, res) => {
