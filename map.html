@@ -8,101 +8,199 @@
     <style>
         #map {
             height: 900px;
+            z-index: 1;
+        }
+
+        
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+            text-align: center;
+            color: white;
+            z-index: 2; 
+        }
+
+        /* Search bar styles */
+        .search-bar {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        .additional-buttons {
+            margin-top: 20px;
+        }
+
+        .additional-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .additional-button:hover {
+            background-color: #007bb5;
+        }
+
+        .text-box {
+            width: 300px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            display: none;
+            z-index: 3;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        .availability-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .availability-button {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+
+        .availability-button:hover {
+            background-color: #007bb5;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
-
-
-    <!-- <title>sidebar-v2 example</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-
-        html, body, #map {
-            height: 100%;
-            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-
-        .lorem {
-            font-style: italic;
-            color: #AAA;
-        }
-    </style> -->
 </head>
 
-
-
 <body>
-<!--     
-    <div id="sidebar" class="sidebar collapsed">
-        
-        <div class="sidebar-tabs">
-            <ul role="tablist">
-                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-                <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
-            </ul>
-
-            <ul role="tablist">
-                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-            </ul>
+    <div class="sidebar">
+        <div class="search-bar">
+            <input type="text" class="search-input" id="parkingLotSearch" placeholder="Search by name, lot #, permit, ...">
+            <button class="search-button" onclick="searchParkingLots()">Search</button>
         </div>
 
-        
-        <div class="sidebar-content">
-            <div class="sidebar-pane" id="home">
-                <h1 class="sidebar-header">
-                    sidebar-v2
-                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-
-                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
-
-                <p class="lorem">ADD SOMETHING.</p>
-
-                <p class="lorem">ADD SOMETHING.</p>
-
-                <p class="lorem">ADD SOMETHING.</p>
-
-                <p class="lorem">ADD SOMETHING.</p>
-            </div>
-
-            <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-
-            <div class="sidebar-pane" id="messages">
-                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-
-            <div class="sidebar-pane" id="settings">
-                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
+        <div class="additional-buttons">
+            <button class="additional-button" onclick="toggleTextBox('tapsBox')">Taps Reporting</button>
+            <button class="additional-button" onclick="showAvailabilityPopup()">Availability</button>
         </div>
     </div>
 
-    <div id="map" class="sidebar-map"></div>
-
-    <a href="https://github.com/Turbo87/sidebar-v2/"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
-
-    
     <div id="map"></div>
-    
+
+    <div class="text-box" id="tapsBox">
+        <span class="close-button" onclick="toggleTextBox('tapsBox')">&times;</span>
+        <input type="text" class="text-input" id="tapsInput" placeholder="Enter Parking ID #">
+        <button class="submit-button" onclick="submitTapsData()">Submit</button>
+    </div>
+
+    <div class="text-box" id="availabilityBox">
+        <span class="close-button" onclick="toggleTextBox('availabilityBox')">&times;</span>
+        <input type="text" class="text-input" id="ParkingIDInput" placeholder="Enter Parking ID #">
+        <div class="availability-buttons">
+            <button class="availability-button" onclick="submitAvailabilityData(0)">0</button>
+            <button class="availability-button" onclick="submitAvailabilityData(1)">1</button>
+            <button class="availability-button" onclick="submitAvailabilityData(2)">2</button>
+            <button class="availability-button" onclick="submitAvailabilityData(3)">3</button>
+            <button class="availability-button" onclick="submitAvailabilityData(4)">4</button>
+        </div>
+        
+    </div>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="leaflet.js"></script>
+
+    <script>
+        function toggleTextBox(boxId) {
+            var currentBox = document.getElementById(boxId);
+            currentBox.style.display = (currentBox.style.display === 'none' || currentBox.style.display === '') ? 'block' : 'none';
+        }
+
+        function searchParkingLots() {
+            // Add your search logic here (document.getElementById('parkingLotSearch').value)
+        }
+
+        function submitTapsData() {
+            // Add your logic to submit Taps data to the backend
+        }
+
+        function showAvailabilityPopup() {
+            var availabilityBox = document.getElementById('availabilityBox');
+            availabilityBox.style.display = 'block';
+        }
+
+        function submitAvailabilityData(value) {
+            var parkingLotId = document.getElementById('ParkingIDInput').value;
+
+            $.ajax({
+            type: 'POST',
+            url: '/submitAvailabilityData',
+            contentType: 'application/json',
+            data: JSON.stringify({ parkingLotId, availabilityValue: value }),
+            success: function (response) {
+                console.log('Availability data submitted successfully:', response);
+            },
+            error: function (error) {
+                console.error('Error submitting availability data:', error);
+            }
+        });
+}
+    </script>
 </body>
 </html>
