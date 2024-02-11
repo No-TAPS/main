@@ -51,7 +51,7 @@ function readjson() {
                         Permits: ${area.permits.join(', ')}<br>
                         R/C permit After 5: ${area.r_c_after_5}<br>
                         Parkmobile Hourly: ${area.parkmobile_hourly}<br>
-                        Parkmobile Daily: ${area.parkmobil_daily}<br>
+                        Parkmobile Daily: ${area.parkmobile_daily}<br>
                         Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
                     `;
 
