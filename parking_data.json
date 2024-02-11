@@ -81,7 +81,7 @@
         },
         "108": {
             "name": "Stevenson Service Road",
-            "address": "501 Stevenson Way, Santa Cruz, CA 95050",
+            "address": "501 Stevenson Way, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -91,7 +91,7 @@
         },
         "109": {
             "name": "Stevenson College",
-            "address":"",
+            "address":"393 McLaughlin Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "N", "NC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -101,7 +101,7 @@
         },
         "110": {
             "name": "Stevenson College",
-            "address": "",
+            "address": "393 McLaughlin Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -111,7 +111,7 @@
         },
         "111A": {
             "name": "Crown College Pit",
-            "address": "",
+            "address": "688-698 Crown Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C111A", "N", "NC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -121,7 +121,7 @@
         },
         "111B": {
             "name": "Crown College Circle",
-            "address": "",
+            "address": "628 Crown Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -131,7 +131,7 @@
         },
         "112": {
             "name": "Core West Structure",
-            "address": "",
+            "address": "McLaughlin Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical", "EV"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -141,7 +141,7 @@
         },
         "113": {
             "name": "Thimann Lab",
-            "address": "",
+            "address": "Steinhart Way, Santa Cruz, CA 95060",
             "permits": ["Reserved", "MC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -151,7 +151,7 @@
         },
         "114": {
             "name": "Social Sciences",
-            "address": "",
+            "address": "226 McLaughlin Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -161,7 +161,7 @@
         },
         "115": {
             "name": "Carriage House",
-            "address": "",
+            "address": "252 Dickens Way, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -171,7 +171,7 @@
         },
         "116": {
             "name": "Campus Facilities",
-            "address": "",
+            "address": "404 Coolidge Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -181,7 +181,7 @@
         },
         "117A": {
             "name": "Admissions",
-            "address": "",
+            "address": "456-468 Coolidge Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -191,7 +191,7 @@
         },
         "117B": {
             "name": "Cook House",
-            "address": "",
+            "address": "456-468 Coolidge Dr, Santa Cruz, CA 95064",
             "permits": ["A", "B", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -201,7 +201,7 @@
         },
         "118": {
             "name": "Granary",
-            "address": "",
+            "address": "1082 High St, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "NC", "RMC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -211,7 +211,7 @@
         },
         "119": {
             "name": "Merrill College",
-            "address": "",
+            "address": "621 Merrill Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C119", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -221,7 +221,7 @@
         },
         "120A": {
             "name": "Lower McHenry Library",
-            "address": "",
+            "address": "McHenry Service Rd, Santa Cruz, CA 95060",
             "permits": ["Reserved", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -231,7 +231,7 @@
         },
         "120B": {
             "name": "Upper McHenry Library",
-            "address": "",
+            "address": "McHenry Service Rd, Santa Cruz, CA 95060",
             "permits": ["Reserved", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -241,7 +241,7 @@
         },
         "121": {
             "name": "Biomed/Science Library",
-            "address": "",
+            "address": "Red Hill Rd, Santa Cruz, CA 95060",
             "permits": ["HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -251,7 +251,7 @@
         },
         "122": {
             "name": "Barn Theater",
-            "address": "",
+            "address": "Coolidge Dr, Santa Cruz, CA 95064",
             "permits": ["Authorized Vehicles Only"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -261,7 +261,7 @@
         },
         "123a": {
             "name": "Heat Plant",
-            "address": "",
+            "address": "Red Hill Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -271,7 +271,7 @@
         },
         "123b": {
             "name": "Heat Plant",
-            "address": "",
+            "address": "Red Hill Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -281,7 +281,7 @@
         },
         "124": {
             "name": "Porter College",
-            "address": "",
+            "address": "7 Porter Kresge Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -291,7 +291,7 @@
         },
         "125": {
             "name": "Porter College",
-            "address": "",
+            "address": "7 Porter Kresge Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -301,7 +301,7 @@
         },
         "126": {
             "name": "Arts",
-            "address": "",
+            "address": "1000-1048 Meyer Dr, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical", "EV"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -311,7 +311,7 @@
         },
         "127": {
             "name": "West Remote",
-            "address": "",
+            "address": "Heller Dr, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C", "N", "R", "RMC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -321,7 +321,7 @@
         },
         "128": {
             "name": "Health Center",
-            "address": "",
+            "address": "McLaughlin Dr, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": null,
             "parkmobile_hourly": null,
@@ -331,7 +331,7 @@
         },
         "129": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "119 Koshland Way, Santa Cruz, CA 95060",
             "permits": ["FSH", "MC", "A"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -341,7 +341,7 @@
         },
         "130": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "224 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -351,7 +351,7 @@
         },
         "131": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "305 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -361,7 +361,7 @@
         },
         "132": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "417 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -371,7 +371,7 @@
         },
         "133": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "512 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC", "A"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -381,7 +381,7 @@
         },
         "134": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "633 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC", "A"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -391,7 +391,7 @@
         },
         "135": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "705 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC", "A"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -401,7 +401,7 @@
         },
         "136": {
             "name": "Family Student Housing",
-            "address": "",
+            "address": "810 Koshland Way, Santa Cruz, CA 95064",
             "permits": ["FSH", "MC", "A"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -411,7 +411,7 @@
         },
         "137": {
             "name": "TAPS Sales Office",
-            "address": "",
+            "address": "438-454 Coolidge Dr, Santa Cruz, CA 95060",
             "permits": ["10-Minute Visitor Parking"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -421,7 +421,7 @@
         },
         "138": {
             "name": "Baskin Engineering",
-            "address": "",
+            "address": "Hagar Dr, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -431,7 +431,7 @@
         },
         "139A": {
             "name": "Engineering II",
-            "address": "",
+            "address": "Engineering Loop, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -441,7 +441,7 @@
         },
         "139B": {
             "name": "Communications",
-            "address": "",
+            "address": "Baskin Cir, Santa Cruz, CA, 95060",
             "permits": ["HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0.5,
@@ -451,7 +451,7 @@
         },
         "140": {
             "name": "Foundry",
-            "address": "",
+            "address": "Kerr Rd, Santa Cruz, CA 95064",
             "permits": ["HC", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -461,7 +461,7 @@
         },
         "141": {
             "name": "Kerr Hall",
-            "address": "",
+            "address": "Kerr Rd, Santa Cruz, CA 95064",
             "permits": ["Reserved", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -471,7 +471,7 @@
         },
         "143": {
             "name": "Kresge College",
-            "address": "",
+            "address": "42 Porter Kresge Rd, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -481,7 +481,7 @@
         },
         "144": {
             "name": "Oaks College",
-            "address": "",
+            "address": "Oaks Rd, Santa Cruz, 95060",
             "permits": ["Reserved", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -491,7 +491,7 @@
         },
         "145": {
             "name": "Kresge College",
-            "address": "",
+            "address": "42 Porter Kresge Rd, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -511,7 +511,7 @@
         },
         "147a": {
             "name": "Kresge College",
-            "address": "",
+            "address": "College Eight Ct, Santa Cruz, CA 95060",
             "permits": ["A", "B", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -521,7 +521,7 @@
         },
         "147b": {
             "name": "Kresge College",
-            "address": "",
+            "address": "31 Porter Kresge Rd, Santa Cruz, CA 95064",
             "permits": ["A", "B", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -531,7 +531,7 @@
         },
         "149": {
             "name": "Heller Extension",
-            "address": "",
+            "address": "31 Porter Kresge Rd, Santa Cruz, CA 95064",
             "permits": ["A", "B", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -541,7 +541,7 @@
         },
         "150A": {
             "name": "North Perimeter",
-            "address": "",
+            "address": "Heller Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -551,7 +551,7 @@
         },
         "150B": {
             "name": "North Perimeter",
-            "address": "",
+            "address": "Heller Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -561,7 +561,7 @@
         },
         "151": {
             "name": "Cardiff House",
-            "address": "",
+            "address": "241 Dickens Way, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -571,7 +571,7 @@
         },
         "152": {
             "name": "Crown-Merill Apartments",
-            "address": "",
+            "address": "East Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C152", "C153", "C154", "C155", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -581,7 +581,7 @@
         },
         "156": {
             "name": "Fire House",
-            "address": "",
+            "address": "Chinquapin Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C156", "N", "NC", "EV"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -591,7 +591,7 @@
         },
         "157": {
             "name": "Graduate Student Apartments",
-            "address": "",
+            "address": "645 Heller Dr, Santa Cruz, CA 95064",
             "permits": ["Lot 157 permit", "MC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -601,7 +601,7 @@
         },
         "158": {
             "name": "Redwood Grove Apartments",
-            "address": "",
+            "address": "Heller Dr, Santa Cruz, CA 95064",
             "permits": ["C158", "MC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -611,7 +611,7 @@
         },
         "159": {
             "name": "Redwood Grove Apartments",
-            "address": "",
+            "address": "Heller Dr, Santa Cruz, CA 95064",
             "permits": ["C159", "MC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -621,7 +621,7 @@
         },
         "160": {
             "name": "Oaks College",
-            "address": "",
+            "address": "100 Oaks Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -631,7 +631,7 @@
         },
         "161": {
             "name": "Oaks College",
-            "address": "",
+            "address": "301 Oaks Rd, Santa Cruz, CA 95064",
             "permits": ["A", "B", "MC", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -641,7 +641,7 @@
         },
         "162": {
             "name": "Oaks College",
-            "address": "",
+            "address": "91-109 Oaks Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C162", "MC", "N", "NC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -651,7 +651,7 @@
         },
         "163": {
             "name": "Cowell Provost",
-            "address": "",
+            "address": "Stevenson Way, Santa Cruz, CA 95060",
             "permits": ["HC", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0.5,
@@ -661,7 +661,7 @@
         },
         "164": {
             "name": "John R. Lewis College",
-            "address": "",
+            "address": "764-782 John R. Lewis College Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "N"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -671,7 +671,7 @@
         },
         "165": {
             "name": "John R. Lewis College",
-            "address": "",
+            "address": "John R. Lewis College Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -681,7 +681,7 @@
         },
         "166": {
             "name": "College Nine",
-            "address": "",
+            "address": "702 College Nine Cir, Santa Cruz, CA 95060",
             "permits": ["A", "B", "MC", "N", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -691,7 +691,7 @@
         },
         "167": {
             "name": "College Nine",
-            "address": "",
+            "address": "John R. Lewis College Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -701,7 +701,7 @@
         },
         "168": {
             "name": "Agroecology",
-            "address": "",
+            "address": "Village Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "N", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -711,7 +711,7 @@
         },
         "169": {
             "name": "The Village",
-            "address": "",
+            "address": "Village Rd, Santa Cruz, CA 95060",
             "permits": ["MC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -721,7 +721,7 @@
         },
         "170": {
             "name": "Hay Barn",
-            "address": "",
+            "address": "Ranch View Rd, Santa Cruz, CA 95060",
             "permits": ["A", "B", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
@@ -731,7 +731,7 @@
         },
         "171": {
             "name": "Environmental Health & Safety",
-            "address": "",
+            "address": "490 Heller Dr, Santa Cruz, CA 95060",
             "permits": ["Reserved", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -741,7 +741,7 @@
         },
         "201": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "100 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["A", "B", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 5,
@@ -751,7 +751,7 @@
         },
         "202": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "100 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["Reserved", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0 ,
@@ -761,7 +761,7 @@
         },
         "203": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "115 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["A", "B", "HC", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -771,7 +771,7 @@
         },
         "204": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "151 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["A", "B", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -781,7 +781,7 @@
         },
         "205": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "130 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C205", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -801,7 +801,7 @@
         },
         "207": {
             "name": "Coastal Science Campus",
-            "address": "",
+            "address": "130 McAllister Way, Santa Cruz, CA 95060",
             "permits": ["Visitor Only"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
@@ -811,7 +811,7 @@
         },
         "301": {
             "name": "Westside Research Park",
-            "address": "",
+            "address": "2300 Delaware Avenue, Santa Cruz, CA 95060",
             "permits": ["A", "B", "C301", "MC", "N", "Reserved"],
             "r_c_after_5": false,
             "parkmobile_hourly": 3,
@@ -821,7 +821,7 @@
         },
         "302": {
             "name": "Westside Research Park",
-            "address": "",
+            "address": "2300 Delaware Avenue, Santa Cruz, CA 95060",
             "permits": ["Special Events Only"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
