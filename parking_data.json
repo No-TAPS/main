@@ -88,6 +88,746 @@
             "parkmobile_daily": false,
             "parkmobile_eve_wknd": false,
             "perimeter": [[36.99692067856943, -122.05126302165608], [36.99697208472563, -122.05135055791611], [36.99721060883574, -122.05102100964308], [36.997465582057146, -122.05087940686954], [36.99751493161414, -122.05086395929422], [36.99749436930263, -122.05076612465066], [36.99731753319398, -122.05080474358891], [36.99717154028276, -122.05088970525306], [36.99708312190446, -122.05098753989662], [36.99696797223441, -122.05113944105372]]
+        },
+        "109": {
+            "name": "Stevenson College",
+            "address":"",
+            "permits": ["A", "B", "N", "NC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.99846923763727, -122.05340579865764], [36.998319473116624, -122.05223990387297], [36.998104593071794, -122.05228066942489], [36.99828040406274, -122.05341802832322]]
+        },
+        "110": {
+            "name": "Stevenson College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.9983908873209, -122.05184290647534], [36.99843089487094, -122.05151725175742], [36.99844015286831, -122.0509683100367], [36.99836841084278, -122.05086006489428], [36.99821749717468, -122.05093026917946], [36.99820786437716, -122.05151323132881], [36.99819502064529, -122.0519112537618], [36.998336301576785, -122.05193939676212]]
+        },
+        "111A": {
+            "name": "Crown College Pit",
+            "address": "",
+            "permits": ["A", "B", "C111A", "N", "NC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.001392, -122.055091], [37.001524, -122.055203], [37.001606, -122.055048], [37.001606, -122.054812], [37.001477, -122.054452], [37.001413, -122.054458], [37.001336, -122.054409], [37.001259, -122.054399], [37.001165, -122.054179], [37.001036, -122.053696], [37.000736, -122.05376], [37.00077, -122.054136], [37.001032, -122.054651], [37.001259, -122.054506], [37.001349, -122.054484], [37.001375, -122.054576], [37.001405, -122.054763], [37.001422, -122.054957], [37.001379, -122.055085]]
+        },
+        "111B": {
+            "name": "Crown College Circle",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[37.001066, -122.055386], [37.0008, -122.055278], [37.000625, -122.054946], [37.000548, -122.054624], [37.000582, -122.054619], [37.000616, -122.054785], [37.000689, -122.054892], [37.000766, -122.05501], [37.000848, -122.055064], [37.000963, -122.055112], [37.00107, -122.055316]]
+        },
+        "112": {
+            "name": "Core West Structure",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical", "EV"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.999181, -122.064146], [36.999344, -122.063255], [36.999031, -122.063153], [36.998843, -122.064028]]
+        },
+        "113": {
+            "name": "Thimann Lab",
+            "address": "",
+            "permits": ["Reserved", "MC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99826, -122.062692], [36.998251, -122.062467], [36.998093, -122.062456], [36.998076, -122.062681]]
+        },
+        "114": {
+            "name": "Social Sciences",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.000222, -122.059275], [37.000304, -122.059109], [37.000214, -122.059093], [37.000235, -122.059001], [37.000111, -122.058953], [37.000089, -122.059007], [36.999999, -122.058958], [36.999952, -122.059082], [37.000012, -122.059109], [36.999991, -122.059168]]
+        },
+        "115": {
+            "name": "Carriage House",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.980478, -122.052049], [36.980534, -122.052011], [36.980268, -122.051545], [36.980122, -122.0517], [36.980319, -122.052162]]
+        },
+        "116": {
+            "name": "Campus Facilities",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.980636, -122.05214], [36.980902, -122.051588], [36.981215, -122.051781], [36.980928, -122.05228]]
+        },
+        "117A": {
+            "name": "Admissions",
+            "address": "",
+            "permits": ["A", "B", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.979664, -122.054366], [36.979625, -122.05449], [36.979574, -122.054474], [36.979557, -122.054543], [36.979149, -122.054506], [36.979149, -122.054334], [36.979218, -122.054345], [36.979222, -122.054388], [36.979535, -122.054393], [36.979582, -122.054345]]
+        },
+        "117B": {
+            "name": "Cook House",
+            "address": "",
+            "permits": ["A", "B", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.978751, -122.054372], [36.978695, -122.054431], [36.978528, -122.054377], [36.978562, -122.054313]]
+        },
+        "118": {
+            "name": "Granary",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "RMC", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.977658, -122.052956], [36.977508, -122.052382], [36.977392, -122.052408], [36.977268, -122.052403], [36.97726, -122.052564], [36.977332, -122.052559], [36.977538, -122.05287]]
+        },
+        "119": {
+            "name": "Merrill College",
+            "address": "",
+            "permits": ["A", "B", "C119", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.000016, -122.051813], [36.999845, -122.051432], [36.999854, -122.050874], [36.999597, -122.050885], [36.999412, -122.051041], [36.999579, -122.051443], [36.99937, -122.051652], [36.999477, -122.052146], [36.999541, -122.05213], [36.999558, -122.052167], [36.999708, -122.052156], [36.999841, -122.051899], [36.999897, -122.051926]]
+        },
+        "120A": {
+            "name": "Lower McHenry Library",
+            "address": "",
+            "permits": ["Reserved", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99514, -122.06037], [36.99519, -122.06045], [36.99549, -122.06021], [36.99545, -122.06014]]
+        },
+        "120B": {
+            "name": "Upper McHenry Library",
+            "address": "",
+            "permits": ["Reserved", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99646, -122.0593], [36.99643, -122.05919], [36.99638, -122.05921], [36.99641, -122.05933]]
+        },
+        "121": {
+            "name": "Biomed/Science Library",
+            "address": "",
+            "permits": ["HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99967, -122.06076], [36.99959, -122.06099], [36.99945, -122.06101], [36.99951, -122.06068]]
+        },
+        "122": {
+            "name": "Barn Theater",
+            "address": "",
+            "permits": ["Authorized Vehicles Only"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.97756, -122.05396], [36.97795, -122.05406], [36.97836, -122.05419], [36.97841, -122.05429], [36.97834, -122.0544], [36.97826, -122.05446], [36.97818, -122.05446], [36.97778, -122.0543], [36.97768, -122.05415], [36.97751, -122.0541], [36.97754, -122.05404]]
+        },
+        "123a": {
+            "name": "Heat Plant",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.00078, -122.06079], [37.00085, -122.06067], [37.00087, -122.06056], [37.0009, -122.0605], [37.00101, -122.06055], [37.00096, -122.06072], [37.00092, -122.0608], [37.00086, -122.06091]]
+        },
+        "123b": {
+            "name": "Heat Plant",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.00113, -122.0616], [37.00116, -122.06127], [37.00122, -122.06114], [37.0015, -122.06092], [37.0016, -122.06097], [37.00161, -122.0612], [37.00149, -122.06113], [37.00128, -122.06149], [37.00128, -122.06166]]
+        },
+        "124": {
+            "name": "Porter College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.99398, -122.06415], [36.99411, -122.06403], [36.99414, -122.06408], [36.99423, -122.06403], [36.99437, -122.06401], [36.99451, -122.06403], [36.99466, -122.06409], [36.99473, -122.06414], [36.99475, -122.06419], [36.99476, -122.06434], [36.99469, -122.06435], [36.99467, -122.06429], [36.99464, -122.06426], [36.99455, -122.06427], [36.99439, -122.06422], [36.9943, -122.06423], [36.99432, -122.06437], [36.9943, -122.06448], [36.99419, -122.06447], [36.99421, -122.0644], [36.99419, -122.06435], [36.99415, -122.06439], [36.9941, -122.06427], [36.99405, -122.06427]]
+        },
+        "125": {
+            "name": "Porter College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.99353, -122.06453], [36.99383, -122.06447], [36.99402, -122.0646], [36.99401, -122.06468], [36.99419, -122.06481], [36.99426, -122.06492], [36.99357, -122.06505], [36.99356, -122.06495], [36.99358, -122.06494], [36.99357, -122.06485], [36.99352, -122.06485], [36.99348, -122.06463], [36.99354, -122.06462]]
+        },
+        "126": {
+            "name": "Arts",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical", "EV"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.99316, -122.06117], [36.99338, -122.06093], [36.99365, -122.06096], [36.99365, -122.06127], [36.99377, -122.06162], [36.99369, -122.06182], [36.9938, -122.06201], [36.99375, -122.06237], [36.99346, -122.06218], [36.99317, -122.06135]]
+        },
+        "127": {
+            "name": "West Remote",
+            "address": "",
+            "permits": ["A", "B", "C", "N", "R", "RMC", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.98834, -122.06472], [36.98871, -122.06484], [36.98866, -122.06543], [36.9887, -122.06591], [36.9887, -122.06663], [36.98876, -122.06695], [36.98867, -122.06701], [36.9884, -122.0669], [36.98836, -122.066], [36.9883, -122.06541]]
+        },
+        "128": {
+            "name": "Health Center",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": null,
+            "parkmobile_hourly": null,
+            "parkmobile_daily": null,
+            "parkmobile_eve_wknd": null,
+            "perimeter": [[36.99902, -122.05835], [36.99924, -122.05781], [36.99969, -122.05789], [36.9997, -122.05785], [36.99982, -122.05786], [36.99981, -122.05798], [36.99946, -122.05805], [36.99928, -122.0583], [36.99926, -122.05848], [36.99936, -122.05862], [36.99967, -122.05858], [36.99973, -122.05871], [36.99967, -122.05878], [36.99966, -122.05888], [36.99948, -122.05888], [36.99941, -122.05875], [36.99925, -122.05866]]
+        },
+        "129": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC", "A"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99088, -122.06706], [36.99095, -122.06692], [36.9912, -122.06706], [36.99113, -122.06725]]
+        },
+        "130": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99062, -122.06766], [36.99067, -122.06745], [36.99097, -122.06756], [36.99095, -122.06793], [36.99089, -122.06793], [36.99088, -122.06775]]
+        },
+        "131": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99106, -122.06759], [36.99136, -122.06762], [36.99137, -122.06782], [36.99104, -122.06781]]
+        },
+        "132": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99069, -122.06822], [36.99095, -122.06827], [36.99094, -122.0685], [36.99069, -122.06845]]
+        },
+        "133": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC", "A"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99104, -122.06834], [36.99123, -122.06834], [36.99131, -122.06829], [36.99137, -122.06828], [36.99139, -122.06848], [36.99129, -122.06857], [36.99103, -122.06857]]
+        },
+        "134": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC", "A"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99023, -122.06876], [36.99056, -122.06863], [36.99059, -122.06871], [36.99069, -122.06869], [36.99071, -122.06883], [36.9906, -122.06883], [36.99029, -122.06897]]
+        },
+        "135": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC", "A"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99178, -122.06745], [36.99193, -122.0674], [36.99205, -122.06786], [36.99189, -122.06795]]
+        },
+        "136": {
+            "name": "Family Student Housing",
+            "address": "",
+            "permits": ["FSH", "MC", "A"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99245, -122.06738], [36.99258, -122.06746], [36.99283, -122.06746], [36.99282, -122.06766], [36.99273, -122.06766], [36.99272, -122.06769], [36.99257, -122.0677], [36.99242, -122.06761]]
+        },
+        "137": {
+            "name": "TAPS Sales Office",
+            "address": "",
+            "permits": ["10-Minute Visitor Parking"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.97891, -122.05286], [36.97897, -122.0528], [36.97904, -122.05288], [36.97927, -122.05266], [36.97952, -122.05307], [36.97947, -122.05312], [36.97952, -122.05319], [36.97963, -122.0531], [36.97959, -122.05302], [36.97965, -122.05296], [36.97993, -122.05339], [36.97993, -122.0536], [36.97975, -122.05365], [36.9797, -122.05351], [36.97962, -122.05332], [36.97937, -122.0534], [36.9794, -122.05357], [36.97933, -122.05365], [36.97922, -122.05363], [36.97918, -122.05348], [36.97924, -122.05347], [36.97921, -122.05332]]
+        },
+        "138": {
+            "name": "Baskin Engineering",
+            "address": "",
+            "permits": ["A", "B", "MC", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99955, -122.06377], [36.99994, -122.06392], [37.0001, -122.06388], [37.00011, -122.06377], [37.00018, -122.06377], [37.00022, -122.06408], [36.99994, -122.06415], [36.9995, -122.06396]]
+        },
+        "139A": {
+            "name": "Engineering II",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.00115, -122.06175], [37.00126, -122.06179], [37.00141, -122.06192], [37.00161, -122.06196], [37.00176, -122.06212], [37.00175, -122.06241], [37.00172, -122.06252], [37.0015, -122.06279], [37.00135, -122.06284], [37.00135, -122.06289], [37.00142, -122.06286], [37.00148, -122.06296], [37.00138, -122.06317], [37.00128, -122.06317], [37.0013, -122.06227], [37.00138, -122.06219], [37.00112, -122.06187]]
+        },
+        "139B": {
+            "name": "Communications",
+            "address": "",
+            "permits": ["HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0.5,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.000559942151654, -122.06214526884263], [37.000588860382045, -122.0620272516485], [37.000620991736234, -122.06198031299174], [37.000701320062355, -122.06198299520068], [37.0007430907584, -122.06204334490222], [37.00072488302193, -122.06215063326052], [37.000650980987935, -122.06221366517102], [37.00057922097312, -122.06219891302175]]
+        },
+        "140": {
+            "name": "Foundry",
+            "address": "",
+            "permits": ["HC", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99568, -122.06144], [36.99579, -122.06153], [36.99581, -122.06172], [36.99562, -122.06187], [36.99556, -122.06226], [36.99538, -122.06225], [36.99545, -122.06181], [36.99555, -122.06169], [36.99568, -122.06164]]
+        },
+        "141": {
+            "name": "Kerr Hall",
+            "address": "",
+            "permits": ["Reserved", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99615, -122.06155], [36.99622, -122.06161], [36.99642, -122.06204], [36.99638, -122.06209], [36.99617, -122.06168], [36.9961, -122.06159]]
+        },
+        "143": {
+            "name": "Kresge College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99702, -122.06679], [36.9973, -122.06704], [36.99718, -122.06726], [36.99715, -122.06724], [36.99714, -122.06735], [36.99673, -122.06732]]
+        },
+        "144": {
+            "name": "Oaks College",
+            "address": "",
+            "permits": ["Reserved", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99037, -122.06328], [36.99044, -122.06328], [36.99044, -122.06348], [36.99036, -122.06348]]
+        },
+        "145": {
+            "name": "Kresge College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99734, -122.06704], [36.99747, -122.06716], [36.99728, -122.06743], [36.99716, -122.0673]]
+        },
+        "146": {
+            "name": "Rachel Carson College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": true,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99203, -122.06441], [36.99225, -122.06434], [36.99227, -122.0644], [36.99258, -122.06429], [36.99253, -122.06411], [36.9927, -122.06403], [36.99279, -122.06438], [36.99227, -122.06459], [36.99231, -122.06475], [36.99233, -122.06495], [36.99217, -122.065], [36.99211, -122.06481], [36.99205, -122.06457]]
+        },
+        "147a": {
+            "name": "Kresge College",
+            "address": "",
+            "permits": ["A", "B", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99678, -122.06543], [36.99688, -122.0655], [36.99697, -122.06564], [36.99692, -122.06569], [36.99684, -122.06558]]
+        },
+        "147b": {
+            "name": "Kresge College",
+            "address": "",
+            "permits": ["A", "B", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99663, -122.06497], [36.99693, -122.06508], [36.99714, -122.06528], [36.997, -122.06548], [36.99686, -122.06528], [36.99672, -122.06517], [36.99663, -122.06514]]
+        },
+        "149": {
+            "name": "Heller Extension",
+            "address": "",
+            "permits": ["A", "B", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99943, -122.06446], [37.00014, -122.06424], [37.00053, -122.06427], [37.00088, -122.06441], [37.00109, -122.06461], [37.00173, -122.06528], [37.0017, -122.06531], [37.0008, -122.06441], [37.00045, -122.06429], [37.00015, -122.06429], [37.00004, -122.06431]]
+        },
+        "150A": {
+            "name": "North Perimeter",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.003354, -122.065852], [37.003195, -122.065803], [37.00287, -122.06583]]
+        },
+        "150B": {
+            "name": "North Perimeter",
+            "address": "",
+            "permits": ["A", "B"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.003328, -122.065846], [37.003178, -122.065777], [37.002848, -122.06582], [37.002527, -122.065728], [37.002, -122.065369], [37.001859, -122.06553], [37.00239, -122.065959], [37.002797, -122.06612], [37.003337, -122.066029], [37.003328, -122.065954]]
+        },
+        "151": {
+            "name": "Cardiff House",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.979209, -122.051829], [36.979162, -122.051861], [36.979235, -122.051985], [36.979278, -122.051969]]
+        },
+        "152": {
+            "name": "Crown-Merill Apartments",
+            "address": "",
+            "permits": ["A", "B", "C152", "C153", "C154", "C155", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.002257, -122.053117], [37.002051, -122.053218], [37.002039, -122.054522], [37.002107, -122.055134], [37.002244, -122.055085], [37.00227, -122.054586]]
+        },
+        "156": {
+            "name": "Fire House",
+            "address": "",
+            "permits": ["A", "B", "C156", "N", "NC", "EV"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.002214, -122.055697], [37.002266, -122.055273], [37.002176, -122.055289], [37.002159, -122.055348], [37.002107, -122.055337], [37.00206, -122.055659]]
+        },
+        "157": {
+            "name": "Graduate Student Apartments",
+            "address": "",
+            "permits": ["Lot 157 permit", "MC", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.000102, -122.064875], [36.999807, -122.064752], [36.999909, -122.064334], [37.000154, -122.064387]]
+        },
+        "158": {
+            "name": "Redwood Grove Apartments",
+            "address": "",
+            "permits": ["C158", "MC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.998281, -122.064661], [36.998358, -122.064478], [36.998191, -122.064258], [36.998084, -122.064425]]
+        },
+        "159": {
+            "name": "Redwood Grove Apartments",
+            "address": "",
+            "permits": ["C159", "MC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.997305, -122.064001], [36.997292, -122.06376], [36.997103, -122.063738], [36.997112, -122.064006]]
+        },
+        "160": {
+            "name": "Oaks College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.990261, -122.065042], [36.990248, -122.064677], [36.990102, -122.064661], [36.990111, -122.065063]]
+        },
+        "161": {
+            "name": "Oaks College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.990029, -122.065074], [36.990029, -122.064897], [36.989884, -122.064886], [36.989888, -122.065111]]
+        },
+        "162": {
+            "name": "Oaks College",
+            "address": "",
+            "permits": ["A", "B", "C162", "MC", "N", "NC", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[36.990483, -122.066098], [36.990029, -122.066367], [36.989584, -122.065406], [36.990286, -122.065144]]
+        },
+        "163": {
+            "name": "Cowell Provost",
+            "address": "",
+            "permits": ["HC", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0.5,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.996131, -122.054876], [36.996118, -122.054565], [36.996066, -122.05457], [36.996088, -122.054887]]
+        },
+        "164": {
+            "name": "John R. Lewis College",
+            "address": "",
+            "permits": ["A", "B", "N"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": true,
+            "perimeter": [[37.000281608809644, -122.05894317125187], [37.00024049224933, -122.05905527882427], [37.00030618934344, -122.05910900092745], [37.00025524058154, -122.05924834263263], [37.00067757797115, -122.05930542236729], [37.00083578629834, -122.05935242920809], [37.00099667578452, -122.05946323104668], [37.00134526849852, -122.0594447640743], [37.00139487579278, -122.0592886342119], [37.00127555008433, -122.05917111711115], [37.001180357530934, -122.05919294171555], [37.00100069802089, -122.0590351330374], [37.00086528273348, -122.05896798040662], [37.00046707995032, -122.0589478346173], [37.00033836749203, -122.05897469566848], [37.000291441021886, -122.05894783461686]]
+        },
+        "165": {
+            "name": "John R. Lewis College",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "NC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.001297, -122.059709], [37.00203, -122.059833], [37.002107, -122.058851], [37.00146, -122.059135]]
+        },
+        "166": {
+            "name": "College Nine",
+            "address": "",
+            "permits": ["A", "B", "MC", "N", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.001512, -122.058202], [37.001632, -122.058057], [37.001649, -122.057982], [37.001482, -122.05788], [37.001417, -122.05781], [37.001353, -122.057741], [37.001306, -122.057805], [37.001417, -122.057928]]
+        },
+        "167": {
+            "name": "College Nine",
+            "address": "",
+            "permits": ["A", "B"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[37.003367, -122.059066], [37.003384, -122.058738], [37.003255, -122.058749], [37.003242, -122.059023], [37.00332, -122.059082]]
+        },
+        "168": {
+            "name": "Agroecology",
+            "address": "",
+            "permits": ["A", "B", "N", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.98549946522775, -122.05561389483493], [36.9853156579191, -122.05528223095065], [36.9851781243328, -122.05529300694778], [36.98519352728517, -122.05541167051386], [36.98525158453915, -122.05540277074638], [36.98543286506743, -122.05571129601817]]
+        },
+        "169": {
+            "name": "The Village",
+            "address": "",
+            "permits": ["MC", "HC", "Medical"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.98692021626784, -122.05541558112166], [36.986915151421734, -122.05533737812432], [36.986718466303785, -122.05531412858456], [36.98671593387406, -122.05538493400108]]
+        },
+        "170": {
+            "name": "Hay Barn",
+            "address": "",
+            "permits": ["A", "B", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 2,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.981139560746385, -122.05447453585637], [36.981125437512176, -122.05431920601907], [36.98084498989013, -122.05439750235983], [36.98085911317638, -122.05450989549414]]
+        },
+        "171": {
+            "name": "Environmental Health & Safety",
+            "address": "",
+            "permits": ["Reserved", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.99674362473627, -122.06331419879639], [36.996679521010996, -122.0632375840299], [36.99660279072336, -122.06334824980371], [36.996677578473054, -122.06341391960356]]
+        },
+        "201": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["A", "B", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 5,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95001390973504, -122.06545090054512], [36.94994701335407, -122.06473401401405], [36.9494204167139, -122.06468250120942], [36.94942727793131, -122.06544875417825]]
+        },
+        "202": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["Reserved", "HC"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0 ,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.94911387290514, -122.06544173896084], [36.94912414004146, -122.06535894553765], [36.9488891363519, -122.06537607521142], [36.94889712192609, -122.06555022689467]]
+        },
+        "203": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["A", "B", "HC", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95047017579464, -122.06552387702841], [36.94993157572172, -122.0655195842947], [36.94994529806385, -122.06582866112248], [36.95029178638339, -122.06582866112248]]
+        },
+        "204": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["A", "B", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95340789198712, -122.06622837646118], [36.95340146172912, -122.06552831992457], [36.953257852491596, -122.06553100213353], [36.95326856960822, -122.06618546111794]]
+        },
+        "205": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["A", "B", "C205", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.952679125946226, -122.06534324748434], [36.952685556265244, -122.0643052326197], [36.9524647816683, -122.0643105970376], [36.9524990767933, -122.06529496772319]]
+        },
+        "206": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["A", "B", "C206", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 5,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95345875676294, -122.06525240705575], [36.95350601267386, -122.06432532832034], [36.953216379210495, -122.06427763908496], [36.953198086533746, -122.06522760865337]]
+        },
+        "207": {
+            "name": "Coastal Science Campus",
+            "address": "",
+            "permits": ["Visitor Only"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95515820463824, -122.06283862908056], [36.95515723517454, -122.06254503832693], [36.9549303803309, -122.06257536795025], [36.95499048723561, -122.06293568387515]]
+        },
+        "301": {
+            "name": "Westside Research Park",
+            "address": "",
+            "permits": ["A", "B", "C301", "MC", "N", "Reserved"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 3,
+            "parkmobile_daily": true,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.95543, -122.058814], [36.955529, -122.058717], [36.955542, -122.058615], [36.955495, -122.05824], [36.955589, -122.057671], [36.955096, -122.057671], [36.954972, -122.057784], [36.954895, -122.057955], [36.95489, -122.058325], [36.955015, -122.058867]]
+        },
+        "302": {
+            "name": "Westside Research Park",
+            "address": "",
+            "permits": ["Special Events Only"],
+            "r_c_after_5": false,
+            "parkmobile_hourly": 0,
+            "parkmobile_daily": false,
+            "parkmobile_eve_wknd": false,
+            "perimeter": [[36.958028, -122.058781], [36.958118, -122.058637], [36.95817, -122.057982], [36.958114, -122.057998], [36.958105, -122.057902], [36.95805, -122.057864], [36.957985, -122.057827], [36.957942, -122.057751], [36.95781, -122.057735], [36.957758, -122.057789], [36.957715, -122.057794], [36.957505, -122.057762], [36.957424, -122.058749], [36.95796, -122.058803]]
         }
     
 }
