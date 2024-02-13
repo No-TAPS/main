@@ -25,7 +25,7 @@
             z-index: 2; 
         }
 
-        /* Search bar styles */
+        
         .search-bar {
             width: 80%;
             margin: 10px auto;
@@ -151,7 +151,7 @@
 
     <div class="text-box" id="availabilityBox">
         <span class="close-button" onclick="toggleTextBox('availabilityBox')">&times;</span>
-        <input type="text" class="text-input" id="ParkingIDInput" placeholder="Enter Parking ID #">
+        <input type="text" class="text-input" id="availabilityInput" placeholder="Enter Parking ID #">
         <div class="availability-buttons">
             <button class="availability-button" onclick="submitAvailabilityData(0)">0</button>
             <button class="availability-button" onclick="submitAvailabilityData(1)">1</button>
@@ -159,8 +159,8 @@
             <button class="availability-button" onclick="submitAvailabilityData(3)">3</button>
             <button class="availability-button" onclick="submitAvailabilityData(4)">4</button>
         </div>
-        
     </div>
+    
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -173,12 +173,25 @@
         }
 
         function searchParkingLots() {
-            // Add your search logic here (document.getElementById('parkingLotSearch').value)
+           (document.getElementById('parkingLotSearch').value)
         }
 
         function submitTapsData() {
-            // Add your logic to submit Taps data to the backend
+            var parkingLotId = document.getElementById('tapsInput').value;
+            var tapsValue = true;
+
+            fetch('http://localhost:3000/submitTapsData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ parkingLotId, tapsValue }),
+            })
+            .then(response => response.json())
+            .then(data => console.log('Taps data submitted successfully:', data))
+            .catch(error => console.error('Error submitting taps data:', error));
         }
+
 
         function showAvailabilityPopup() {
             var availabilityBox = document.getElementById('availabilityBox');
@@ -186,21 +199,20 @@
         }
 
         function submitAvailabilityData(value) {
-            var parkingLotId = document.getElementById('ParkingIDInput').value;
+            var parkingLotId = document.getElementById('availabilityInput').value;
 
-            $.ajax({
-            type: 'POST',
-            url: '/submitAvailabilityData',
-            contentType: 'application/json',
-            data: JSON.stringify({ parkingLotId, availabilityValue: value }),
-            success: function (response) {
-                console.log('Availability data submitted successfully:', response);
-            },
-            error: function (error) {
-                console.error('Error submitting availability data:', error);
-            }
-        });
-}
+            fetch('http://localhost:3000/submitAvailabilityData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ parkingLotId, availabilityValue: value }),
+            })
+            .then(response => response.json())
+            .then(data => console.log('Availability data submitted successfully:', data))
+            .catch(error => console.error('Error submitting availability data:', error));
+        }
+
     </script>
 </body>
 </html>

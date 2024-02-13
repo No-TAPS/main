@@ -63,6 +63,56 @@ app.post('/updateParkingLot', (req, res) => {
     });
 });
 
+app.post('/submitAvailabilityData', (req, res) => {
+    const { parkingLotId, availabilityValue } = req.body;
+    const path = './mapData.json';
+
+    fs.readFile(path, (err, data) => {
+        let mapData = err ? {} : JSON.parse(data.toString());
+
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = {  availability: 0 };
+        }
+
+        mapData[parkingLotId].availability = availabilityValue;
+
+        fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
+            if (writeError) {
+                res.status(500).send('Error updating the file.');
+                return;
+            }
+
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
+        });
+    });
+});
+
+
+app.post('/submitTapsData', (req, res) => {
+    const { parkingLotId, tapsValue } = req.body;
+    const path = './mapData.json';
+
+    fs.readFile(path, (err, data) => {
+        let mapData = err ? {} : JSON.parse(data.toString());
+
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = { tapsPresence: false };
+        }
+        mapData[parkingLotId].tapsPresence = tapsValue;
+
+        fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
+            if (writeError) {
+                res.status(500).send('Error updating the file.');
+                return;
+            }
+
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
+        });
+    });
+});
+
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
