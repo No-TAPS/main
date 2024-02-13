@@ -45,17 +45,17 @@ function readjson() {
 
                     // information on the popup
                     var popupContent = `
-                        <b>Area Number ${key}</b><br>
+                        <b>Area Number: ${key}</b><br>
                         Name: ${area.name}<br>
                         Address: ${area.address}<br>
                         Permits: ${area.permits.join(', ')}<br>
                         R/C permit After 5: ${area.r_c_after_5}<br>
                         Parkmobile Hourly: ${area.parkmobile_hourly}<br>
-                        Parkmobile Daily: ${area.parkmobil_daily}<br>
+                        Parkmobile Daily: ${area.parkmobile_daily}<br>
                         Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
                     `;
 
-                    L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.3 })
+                    L.polygon(coordinates, { color: getRandomRGBColor(), fillOpacity: 0.2 })
                         .bindPopup(popupContent)
                         .addTo(map);
                 }

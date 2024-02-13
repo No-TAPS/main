@@ -44,7 +44,7 @@ app.post('/updateParkingLot', (req, res) => {
 
         // Initialize if parking lot ID doesn't exist
         if (!mapData[parkingLotId]) {
-            mapData[parkingLotId] = { clicks: 0, fullness: 0, tapsPresence: false};
+            mapData[parkingLotId] = { clicks: 0, fullness: 0, tapsPresence: 0};
         }
 
         // Increment clicks and update fullness rating
