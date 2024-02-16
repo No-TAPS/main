@@ -1,20 +1,36 @@
 // leaflet.js
+//setTimeout()
+//unit test
+//double click
 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
 
-// // Initialize the map
+// Initialize the map
 var map = L.map('map').setView(ucscCoordinates, 15);
 
-// // Add a tile layer (using OpenStreetMap)
+// Add a tile layer (using OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
+
+// first time user guide
+var tooltip = L.tooltip({direction: 'right'})
+    .setLatLng([36.990706, -122.050885])
+    .setContent('User Guide<br />Single click on the parking lot to get detail info. <br />Double click for reporting.')
+    .addTo(map);
+
+// var fuserguide = L.popup()
+//     .setLatLng(ucscCoordinates)
+//     .setContent("I am a standalone popup.")
+//     .openOn(map);
 
 // // Add a marker for UCSC
 // L.marker(ucscCoordinates).addTo(map)
 //     .bindPopup('University of California, Santa Cruz (UCSC)')
 //     .openPopup();
+
+
 
 
 ///////////// Ramdom RGB color
@@ -24,6 +40,32 @@ function getRandomRGBColor() {
     var b = Math.floor(Math.random() * 256);
     return `rgb(${r},${g},${b})`;
 }
+
+// text box setting
+function createTextBox(content, latlng) {
+    var textBox = document.createElement('div');
+    textBox.className = 'text-box';
+    textBox.innerHTML = content;
+
+    // Set the position of the text box
+    var containerPoint = map.latLngToContainerPoint(latlng);
+    textBox.style.position = 'absolute';
+    textBox.style.left = containerPoint.x + 'px';
+    textBox.style.top = containerPoint.y + 'px';
+
+    // Append the text box to the map container
+    map.getContainer().appendChild(textBox);
+
+    // Add a close button event listener
+    textBox.getElementsByClassName('close-button')[0].addEventListener('click', function () {
+        textBox.remove(); // Remove the text box when the close button is clicked
+    });
+
+    // Return the created text box
+    return textBox;
+}
+
+
 
 //////////// coordinate
 function readjson() {
@@ -43,6 +85,19 @@ function readjson() {
                         return [coord[0], coord[1]];
                     });
 
+                    var permitsDropdown = '<select>';
+                    for (var i = 0; i < area.permits.length; i++) {
+                        permitsDropdown += '<option value="' + area.permits[i] + '">' + area.permits[i] + '</option>';
+                    }
+                    permitsDropdown += '</select>';
+
+                    var question = 'Do you have a permit?';
+
+                    var popupContent = '<b>' + area.name + '</b><br>Address: ' + area.address + '<br>' +
+                                       'Permits: ' + permitsDropdown + '<br>' +
+                                       question;
+
+
                     // information on the popup
                     var popupContent = `
                         <b>Area Number: ${key}</b><br>
@@ -55,9 +110,56 @@ function readjson() {
                         Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
                     `;
 
-                    L.polygon(coordinates, { color: getRandomRGBColor(), fillOpacity: 0.2 })
-                        .bindPopup(popupContent)
-                        .addTo(map);
+                    // L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.2 })
+                    //     .bindPopup(popupContent)
+                    //     .addTo(map);
+
+                    L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.3 })
+                    .addTo(map)
+                    .bindPopup(popupContent) 
+                    //right click function
+                    .on('contextmenu', function (event) {
+                        var rightClickPopupContent = '<b>' + area.name + 
+                                '<br />' + key + 
+                                '<br />' + '<button id="reportfullness">Report Fullness</button>' +
+                                '<button id="reporttaps">Report Taps</button>';
+
+                        L.popup()
+                            .setLatLng(event.latlng)
+                            .setContent(rightClickPopupContent)
+                            .openOn(map);
+
+                        document.getElementById('reportfullness').addEventListener('click', function () {
+                            map.closePopup(popup);
+                            var fullnessBoxContent = 
+                                '<div class="availability-buttons">' +
+                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 0)">0</button>' +
+                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 1)">1</button>' +
+                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 2)">2</button>' +
+                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 3)">3</button>' +
+                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 4)">4</button>' +
+                                '</div>';
+
+                            var fullnesspopup = L.popup()
+                                .setLatLng(event.latlng)
+                                .setContent(fullnessBoxContent)
+                                .openOn(map);
+                        });
+                            
+
+                        document.getElementById('reporttaps').addEventListener('click', function () {
+                            map.closePopup(popup);
+                            var tapsBoxContent = 
+                                '<div class="availability-buttons">' +
+                                '<button class="submit-button" onclick="submitTapsData(' + key + ')">TAPS</button>' +
+                                '</div>';
+
+                            var tapspopup = L.popup()
+                                .setLatLng(event.latlng)
+                                .setContent(tapsBoxContent)
+                                .openOn(map);
+                        });
+                    });
                 }
             }
         } else {
@@ -69,7 +171,7 @@ function readjson() {
 }
 
 
-
+// excel handle files
 function handleFile() {
     //console.log("starting");
 
@@ -197,17 +299,17 @@ function processDataAndDisplayPolygons(data) {
 
 
 //////////// pop up window
-var popup = L.popup();
+// var popup = L.popup();
 
 //tool for get the coordinates
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent("You clicked the map at " + e.latlng.toString())
+//         .openOn(map);
+// }
 
-map.on('click', onMapClick);
+// map.on('click', onMapClick);
 
 ///////////// icon
 // var warningicon = L.icon({
@@ -223,5 +325,42 @@ map.on('click', onMapClick);
 // L.marker([36.98853587549755, -122.06590851341495], {icon: warningicon}).addTo(map);
 
 //handleFile();
+
+function toggleTextBox(boxId) {
+    var currentBox = document.getElementById(boxId);
+    currentBox.style.display = (currentBox.style.display === 'none' || currentBox.style.display === '') ? 'block' : 'none';
+}
+
+function submitTapsData(parkingLotId) {
+    var tapsValue = true;
+
+    fetch('http://localhost:3000/submitTapsData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ parkingLotId, tapsValue }),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Taps data submitted successfully:', data))
+    .catch(error => console.error('Error submitting taps data:', error));
+}
+
+function submitAvailabilityData(parkingLotId, value) {
+    fetch('http://localhost:3000/submitAvailabilityData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ parkingLotId, availabilityValue: value }),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Availability data submitted successfully:', data))
+    .catch(error => console.error('Error submitting availability data:', error));
+}
+
+
+
+
 readjson();
 
