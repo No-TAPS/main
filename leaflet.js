@@ -19,6 +19,9 @@ var tooltip = L.tooltip({direction: 'right'})
     .setLatLng([36.990706, -122.050885])
     .setContent('User Guide<br />Single click on the parking lot to get detail info. <br />Double click for reporting.')
     .addTo(map);
+map.on('click', function () {
+    tooltip.closeTooltip();
+});
 
 // var fuserguide = L.popup()
 //     .setLatLng(ucscCoordinates)
@@ -47,21 +50,18 @@ function createTextBox(content, latlng) {
     textBox.className = 'text-box';
     textBox.innerHTML = content;
 
-    // Set the position of the text box
     var containerPoint = map.latLngToContainerPoint(latlng);
     textBox.style.position = 'absolute';
     textBox.style.left = containerPoint.x + 'px';
     textBox.style.top = containerPoint.y + 'px';
 
-    // Append the text box to the map container
+    
     map.getContainer().appendChild(textBox);
 
-    // Add a close button event listener
     textBox.getElementsByClassName('close-button')[0].addEventListener('click', function () {
-        textBox.remove(); // Remove the text box when the close button is clicked
+        textBox.remove(); 
     });
 
-    // Return the created text box
     return textBox;
 }
 
