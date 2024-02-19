@@ -118,48 +118,7 @@ function readjson() {
                     .addTo(map)
                     .bindPopup(popupContent) 
                     //right click function
-                    .on('contextmenu', function (event) {
-                        var rightClickPopupContent = '<b>' + area.name + 
-                                '<br />' + key + 
-                                '<br />' + '<button id="reportfullness">Report Fullness</button>' +
-                                '<button id="reporttaps">Report Taps</button>';
-
-                        L.popup()
-                            .setLatLng(event.latlng)
-                            .setContent(rightClickPopupContent)
-                            .openOn(map);
-
-                        document.getElementById('reportfullness').addEventListener('click', function () {
-                            map.closePopup(popup);
-                            var fullnessBoxContent = 
-                                '<div class="availability-buttons">' +
-                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 0)">0</button>' +
-                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 1)">1</button>' +
-                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 2)">2</button>' +
-                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 3)">3</button>' +
-                                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 4)">4</button>' +
-                                '</div>';
-
-                            var fullnesspopup = L.popup()
-                                .setLatLng(event.latlng)
-                                .setContent(fullnessBoxContent)
-                                .openOn(map);
-                        });
-                            
-
-                        document.getElementById('reporttaps').addEventListener('click', function () {
-                            map.closePopup(popup);
-                            var tapsBoxContent = 
-                                '<div class="availability-buttons">' +
-                                '<button class="submit-button" onclick="submitTapsData(' + key + ')">TAPS</button>' +
-                                '</div>';
-
-                            var tapspopup = L.popup()
-                                .setLatLng(event.latlng)
-                                .setContent(tapsBoxContent)
-                                .openOn(map);
-                        });
-                    });
+                    .on('contextmenu', get_menu_function(key, area));
                 }
             }
         } else {
@@ -170,6 +129,51 @@ function readjson() {
     xhr.send();
 }
 
+function get_menu_function(key, area) {
+    return function(event) {
+        console.log(key);
+        var rightClickPopupContent = '<b>' + area.name + 
+                '<br />' + key + 
+                '<br />' + '<button id="reportfullness">Report Fullness</button>' +
+                '<button id="reporttaps">Report Taps</button>';
+
+        L.popup()
+            .setLatLng(event.latlng)
+            .setContent(rightClickPopupContent)
+            .openOn(map);
+
+        document.getElementById('reportfullness').addEventListener('click', function () {
+            //map.closePopup(popup);
+            var fullnessBoxContent = 
+                '<div class="availability-buttons">' +
+                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 0)">0<\/button>' +
+                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 1)">1<\/button>' +
+                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 2)">2<\/button>' +
+                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 3)">3<\/button>' +
+                '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 4)">4<\/button>' +
+                '<\/div>';
+            
+            var fullnesspopup = L.popup()
+                .setLatLng(event.latlng)
+                .setContent(fullnessBoxContent)
+                .openOn(map);
+        });
+            
+
+        document.getElementById('reporttaps').addEventListener('click', function () {
+            //map.closePopup(popup);
+            var tapsBoxContent = 
+                '<div class="availability-buttons">' +
+                '<button class="submit-button" onclick="submitTapsData(' + key + ')">TAPS</button>' +
+                '</div>';
+
+            var tapspopup = L.popup()
+                .setLatLng(event.latlng)
+                .setContent(tapsBoxContent)
+                .openOn(map);
+        });
+    }
+}
 
 // excel handle files
 function handleFile() {
@@ -265,6 +269,8 @@ function processDataAndDisplayPolygons(data) {
 }
 
 
+
+
 // var westremote = L.polygon([
 //     [36.98874277751547, -122.06693840060198],
 //     [36.98869870002297, -122.0647122482799],
@@ -347,6 +353,7 @@ function submitTapsData(parkingLotId) {
 }
 
 function submitAvailabilityData(parkingLotId, value) {
+    console.log("bruh");
     fetch('http://localhost:3000/submitAvailabilityData', {
         method: 'POST',
         headers: {
@@ -359,7 +366,9 @@ function submitAvailabilityData(parkingLotId, value) {
     .catch(error => console.error('Error submitting availability data:', error));
 }
 
-
+function bruh() {
+    console.log("bruh")
+}
 
 
 readjson();
