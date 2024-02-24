@@ -38,52 +38,21 @@ function getRandomRGBColor() {
     return `rgb(${r},${g},${b})`;
 }
 
-function pick_random_color() {
-    colors = [avail_zero, avail_one, avail_two, avail_three, avail_four];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
-
-function get_index(data, key) {
-    if (data.hasOwnProperty(key)) {
-        area = data[key];
-        return area.availability;
-    }
-    return 4;
-}
-
-function color_from_availability(id) {
+async function get_color(key) {
     var colors = [avail_zero, avail_one, avail_two, avail_three, avail_four];
     var jsonURL = 'http://localhost:3000/ParkingStatus';
     var idx = 4;
-    fetch(jsonURL)
+    await fetch(jsonURL)
         .then(res => res.json())
         .then(data => {
-            idx = get_index(data, id);
+            if (data.hasOwnProperty(key)) {
+                idx = data[key].availability;
+            }
         })
         .catch(error => console.log(error));
     return colors[idx];
-    /*
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', jsonURL, true);
-    xhr.responseType = 'json';
-
-    var color = colors[4];
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            var jsonData = JSON.parse(xhr.response);
-            if (jsonData.hasOwnProperty(id)) {
-                var area = jsonData[id];
-                color = colors[area.availability];
-                console.log(color)
-            }
-        } else {
-            console.error(xhr.statusText);
-        }
-    };
-    xhr.send();
-    */
 }
+
 // text box setting
 function createTextBox(content, latlng) {
     var textBox = document.createElement('div');
@@ -112,7 +81,7 @@ function readjson() {
     xhr.open('GET', jsonURL, true);
     xhr.responseType = 'json';
 
-    xhr.onload = function () {
+    xhr.onload = async function () {
         if (xhr.status === 200) {
             var jsonData = xhr.response;
             // parse the data
@@ -152,7 +121,7 @@ function readjson() {
                     //     .bindPopup(popupContent)
                     //     .addTo(map);
 
-                    L.polygon(coordinates, { fillColor: color_from_availability(key), fillOpacity: 0.3 })
+                    L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
                     .addTo(map)
                     .bindPopup(popupContent) 
                     //right click function
@@ -302,6 +271,7 @@ function submitAvailabilityData(parkingLotId, value) {
     .then(data => console.log('Availability data submitted successfully:', data))
     .catch(error => console.error('Error submitting availability data:', error));
 }
+
 
 readjson();
 
