@@ -1,111 +1,105 @@
 const express = require('express');
-const mysql = require('mysql');
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
+const cors = require('cors');
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// Middleware to parse JSON bodies
+// Middleware
 app.use(bodyParser.json());
+app.use(cors()); 
 
-// Initial database connection configuration, without specifying a database
-const dbConfig = {
-  host: 'localhost',
-  user: 'No-Taps',
-  password: 'Taps'
-};
-
-const dbName = 'parkingLots';
-
-// Create a connection to check for the database existence and to create it if it does not exist
-const initialDbConnection = mysql.createConnection(dbConfig);
-
-initialDbConnection.connect(err => {
-  if (err) {
-    console.error('Error connecting to the MySQL server:', err);
-    return;
-  }
-  console.log("Connected to MySQL server successfully!");
-
-  // Create the database if it doesn't exist
-  initialDbConnection.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`, (err, result) => {
-    if (err) throw err;
-    console.log(`Database ${dbName} checked/created successfully`);
-    
-    // Use the database
-    initialDbConnection.changeUser({database : dbName}, (err) => {
-      if (err) throw err;
-
-      // Create the table if it doesn't exist
-      const createTableQuery = `
-        CREATE TABLE IF NOT EXISTS parking_lots (
-          id INT AUTO_INCREMENT PRIMARY KEY,
-          lot_id INT NOT NULL,
-          fullness DECIMAL(5, 2) NOT NULL,
-          availability BOOLEAN NOT NULL
-        )`;
-
-      initialDbConnection.query(createTableQuery, (err, result) => {
-        if (err) throw err;
-        console.log("Table 'parking_lots' checked/created successfully");
-
-        // Close the initial connection
-        initialDbConnection.end();
-      });
-    });
-  });
+app.get('/ParkingCordsJson', (req, res) => {
+    const path = './parking_data.json'; 
+    const file = fs.createReadStream(path);
+    file.pipe(res);
 });
 
-// Reconfigure the database connection to use the newly created database
-const dbConnection = mysql.createConnection({
-  ...dbConfig,
-  database: dbName
+app.get('/ParkingStatus', (req, res) => {
+  const path = './mapData.json'; 
+  const file = fs.createReadStream(path);
+  file.pipe(res);
 });
 
-// POST endpoint to receive parking lot data and write it to the database
-app.post('/parking-lot', (req, res) => {
-  const { lotId, fullness, availability } = req.body;
+// POST route to update parking lot data
+app.post('/updateParkingLot', (req, res) => {
+    const { parkingLotId, fullnessRating, isTaps } = req.body;
+    const path = './mapData.json';
 
-  if (lotId == null || fullness == null || availability == null) {
-    return res.status(400).send('Missing data for lotId, fullness, or availability');
-  }
+    fs.readFile(path, (err, data) => {
+        let mapData = err ? {} : JSON.parse(data.toString());
 
-  const query = `INSERT INTO parking_lots (lot_id, fullness, availability) VALUES (?, ?, ?)`;
-
-  dbConnection.query(query, [lotId, fullness, availability], (err, result) => {
-    if (err) {
-      console.error('Failed to write parking lot data:', err);
-      return res.status(500).send('Failed to write parking lot data');
-    }
-    console.log("Parking lot data written successfully:", result);
-    res.status(201).send({ message: 'Parking lot data written successfully', id: result.insertId });
-  });
-});
-
-app.get('/parking-lot/:lotId', (req, res) => {
-    const lotId = parseInt(req.params.lotId);
-    
-    if (isNaN(lotId)) {
-        return res.status(400).send('Invalid lot ID');
-    }
-
-    const query = 'SELECT * FROM parking_lots WHERE lot_id = ?';
-
-    dbConnection.query(query, [lotId], (err, results) => {
-        if (err) {
-            console.error('Failed to retrieve parking lot data:', err);
-            return res.status(500).send('Failed to retrieve parking lot data');
+        // Initialize if parking lot ID doesn't exist
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = { clicks: 0, fullness: 0, tapsPresence: 0};
         }
 
-        if (results.length > 0) {
-            res.status(200).json(results[0]);
-        } else {
-            res.status(404).send('Parking lot not found');
-        }
+        // Increment clicks and update fullness rating
+        mapData[parkingLotId].clicks += 1;
+        mapData[parkingLotId].fullness = fullnessRating;
+        mapData[parkingLotId].tapsPresence = isTaps
+
+        fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
+            if (writeError) {
+                res.status(500).send('Error updating the file.');
+                return;
+            }
+
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
+        });
     });
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.post('/submitAvailabilityData', (req, res) => {
+    const { parkingLotId, availabilityValue } = req.body;
+    const path = './mapData.json';
+
+    fs.readFile(path, (err, data) => {
+        let mapData = err ? {} : JSON.parse(data.toString());
+
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = {  availability: 0 };
+        }
+
+        mapData[parkingLotId].availability = availabilityValue;
+
+        fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
+            if (writeError) {
+                res.status(500).send('Error updating the file.');
+                return;
+            }
+
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
+        });
+    });
+});
+
+
+app.post('/submitTapsData', (req, res) => {
+    const { parkingLotId, tapsValue } = req.body;
+    const path = './mapData.json';
+
+    fs.readFile(path, (err, data) => {
+        let mapData = err ? {} : JSON.parse(data.toString());
+
+        if (!mapData[parkingLotId]) {
+            mapData[parkingLotId] = { tapsPresence: false };
+        }
+        mapData[parkingLotId].tapsPresence = tapsValue;
+
+        fs.writeFile(path, JSON.stringify(mapData, null, 2), (writeError) => {
+            if (writeError) {
+                res.status(500).send('Error updating the file.');
+                return;
+            }
+
+            res.send({ success: true, parkingLotId, data: mapData[parkingLotId] });
+        });
+    });
+});
+
+
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

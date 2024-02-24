@@ -1,6 +1,26 @@
 {
-  "1": {
-    "clicks": 9,
-    "fullness": 3
+  "101": {
+    "availability": 0
+  },
+  "102": {
+    "availability": 2
+  },
+  "104": {
+    "availability": 1
+  },
+  "112": {
+    "availability": 1
+  },
+  "113": {
+    "availability": 0
+  },
+  "138": {
+    "availability": 1
+  },
+  "146": {
+    "availability": 3
+  },
+  "165": {
+    "availability": 1
   }
 }
