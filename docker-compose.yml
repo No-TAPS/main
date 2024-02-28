@@ -1,18 +1,6 @@
 version: '3'
 
 services:
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=yourpassword
-      - DATABASE_NAME=mydb
-
   db:
     image: mysql:8.3.0
     ports:
@@ -22,6 +10,21 @@ services:
       MYSQL_DATABASE: mydb
     volumes:
       - db-data:/var/lib/mysql
+
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    command: ["node", "entry.js"]
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=No-Taps
+      - DATABASE_PASSWORD=Taps
+      - DATABASE_NAME=mydb
+
 
 volumes:
   db-data:

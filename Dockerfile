@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install any dependencies
-RUN npm install express mysql2
+RUN npm install express mysql2 body-parser
 
 # Bundle your app's source code inside the Docker image
 COPY . .
@@ -17,7 +17,7 @@ COPY . .
 EXPOSE 3000
 
 # Define the command to run your app
-CMD [ "node", "index.js" ]
+CMD [ "node", "entry.js" ]
 
 
 #NOTE!!!!!!: Replace index.js with the entry point to your Node.js application.
