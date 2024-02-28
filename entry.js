@@ -1,12 +1,27 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+app.use(cors()); 
+
+app.get('/ParkingCordsJson', (req, res) => {
+    const path = './parking_data.json'; 
+    const file = fs.createReadStream(path);
+    file.pipe(res);
+});
+
+app.get('/ParkingStatus', (req, res) => {
+  const path = './mapData.json'; 
+  const file = fs.createReadStream(path);
+  file.pipe(res);
+}); 
+
 
 // Initial database connection configuration, without specifying a database
 const dbConfig = {
