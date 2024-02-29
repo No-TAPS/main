@@ -6,7 +6,8 @@
     "availability": 2
   },
   "104": {
-    "availability": 1
+    "availability": 4,
+    "tapsPresence": true
   },
   "112": {
     "availability": 1

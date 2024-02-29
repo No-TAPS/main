@@ -7,7 +7,9 @@
 var ucscCoordinates = [36.9914, -122.0586];
 
 // Initialize the map
-var map = L.map('map').setView(ucscCoordinates, 15);
+var map = L.map('map', {
+    zoomControl: false
+}).setView(ucscCoordinates, 15);
 
 // Add a tile layer (using OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -22,14 +24,24 @@ var tooltip = L.tooltip({direction: 'right'})
 map.on('click', function () {
     tooltip.closeTooltip();
 });
+/// Global Varible ///
+var fullnesspopup;
+var tapspopup;
+
+
+var wicon = L.icon({
+    iconUrl: 'warning-icon.png',
+    iconSize: [10, 10] 
+  });
+
 
 ////////////////////// COLOR LOGIC //////////////////////
 var color = 'rgb(0,255,50)';
 var avail_zero = 'rgb(255,0,0)';
-var avail_one = 'rgb(255,90,0)';
+var avail_one = 'rgb(255, 165, 0)';
 var avail_two = 'rgb(255, 255, 0)';
-var avail_three = 'rgb(100,255,0)';
-var avail_four = 'rgb(0,255,25)';
+var avail_three = 'rgb(165, 255, 0)';
+var avail_four = 'rgb(0,255,0)';
 /// Ramdom RGB Color ///
 function getRandomRGBColor() {
     var r = Math.floor(Math.random() * 256);
@@ -51,6 +63,20 @@ async function get_color(key) {
         })
         .catch(error => console.log(error));
     return colors[idx];
+}
+
+async function get_taps(key){
+    var jsonURL = 'http://localhost:3000/ParkingStatus';
+    var tapspresence = false;
+    await fetch(jsonURL)
+        .then(res => res.json())
+        .then(data => {
+            if (data.hasOwnProperty(key)) {
+                tapspresence = data[key].tapsPresence;
+            }
+        })
+        .catch(error => console.log(error));
+    return tapspresence;
 }
 
 // text box setting
@@ -121,11 +147,24 @@ function readjson() {
                     //     .bindPopup(popupContent)
                     //     .addTo(map);
 
-                    L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
+                    var polygon = L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
                     .addTo(map)
                     .bindPopup(popupContent) 
                     //right click function
                     .on('contextmenu', get_menu_function(key, area));
+                    // taps warning
+                    var tapspresence = get_taps(key);
+                    tapspresence.then(function(value) {
+                        //console.log(key, value);
+                        if (value == true){
+                            var center = polygon.getBounds().getCenter();
+                            L.marker(center, {icon: wicon}).addTo(map);
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                    });
+                
                 }
             }
         } else {
@@ -160,7 +199,7 @@ function get_menu_function(key, area) {
                 '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 4)">4<\/button>' +
                 '<\/div>';
             
-            var fullnesspopup = L.popup()
+            fullnesspopup = L.popup()
                 .setLatLng(event.latlng)
                 .setContent(fullnessBoxContent)
                 .openOn(map);
@@ -174,7 +213,7 @@ function get_menu_function(key, area) {
                 '<button class="submit-button" onclick="submitTapsData(' + key + ')">TAPS</button>' +
                 '</div>';
 
-            var tapspopup = L.popup()
+            tapspopup = L.popup()
                 .setLatLng(event.latlng)
                 .setContent(tapsBoxContent)
                 .openOn(map);
@@ -245,6 +284,7 @@ function toggleTextBox(boxId) {
 }
 
 function submitTapsData(parkingLotId) {
+    map.closePopup(tapspopup);
     var tapsValue = true;
 
     fetch('http://localhost:3000/submitTapsData', {
@@ -260,6 +300,7 @@ function submitTapsData(parkingLotId) {
 }
 
 function submitAvailabilityData(parkingLotId, value) {
+    map.closePopup(fullnesspopup);
     fetch('http://localhost:3000/submitAvailabilityData', {
         method: 'POST',
         headers: {
