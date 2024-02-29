@@ -1,7 +1,8 @@
 // leaflet.js
-//setTimeout()
-//unit test
-//double click
+///// auto refresh /////
+setInterval(function() {
+    window.location.reload();
+  }, 5000);
 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
