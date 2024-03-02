@@ -1,8 +1,13 @@
 // leaflet.js
 ///// auto refresh /////
-setInterval(function() {
-    window.location.reload();
-  }, 5000);
+setInterval(async function() {
+    map.eachLayer(await function(layer){
+        if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
+            layer.remove();
+        }
+    });
+    await readjson();
+  }, 10000);
 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
