@@ -1,8 +1,20 @@
 // leaflet.js
+
+
 ///// auto refresh /////
+<<<<<<< HEAD
 // setInterval(function() {
 //     window.location.reload();
 //   }, 600000);
+=======
+setInterval(async function() {
+    map.eachLayer(await function(layer){
+        if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
+            layer.remove();
+        }
+    });
+    await readjson();
+  }, 10000);
 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
@@ -111,6 +123,15 @@ function readjson() {
     xhr.onload = async function () {
         if (xhr.status === 200) {
             var jsonData = xhr.response;
+
+            // TEMP need to figure out a way to trigger this and import search queries
+            if (false) {
+                const processor = new JsonProcessor(jsonData);
+                jsonData = processor.searchByCriteria("permits", "A");
+                console.log(filteredData);
+            }
+            
+
             // parse the data
             for (var key in jsonData) {
                 if (jsonData.hasOwnProperty(key)) {
@@ -314,7 +335,10 @@ function submitAvailabilityData(parkingLotId, value) {
     .catch(error => console.error('Error submitting availability data:', error));
 }
 
-//call the function once awhile
+
 readjson();
+<<<<<<< HEAD
 setInterval(readjson, 100000);
 
+=======
+>>>>>>> d2bce06ba1b84d5fd11c2fb82a75fc34f01b0bfd
