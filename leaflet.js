@@ -118,14 +118,19 @@ function readjson() {
     xhr.onload = async function () {
         if (xhr.status === 200) {
             var jsonData = xhr.response;
-            const processor = new JsonProcessor(jsonData);
-            var filteredData = processor.searchByCriteria("permits", "A");
-            console.log(filteredData);
+
+            // TEMP need to figure out a way to trigger this and import search queries
+            if (false) {
+                const processor = new JsonProcessor(jsonData);
+                jsonData = processor.searchByCriteria("permits", "A");
+                console.log(filteredData);
+            }
+            
 
             // parse the data
             for (var key in jsonData) {
-                if (filteredData.hasOwnProperty(key)) {
-                    var area = filteredData[key];
+                if (jsonData.hasOwnProperty(key)) {
+                    var area = jsonData[key];
                     var coordinates = area.perimeter.map(function(coord){
                         return [coord[0], coord[1]];
                     });
