@@ -1,8 +1,8 @@
 // leaflet.js
 ///// auto refresh /////
-setInterval(function() {
-    window.location.reload();
-  }, 5000);
+// setInterval(function() {
+//     window.location.reload();
+//   }, 600000);
 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
@@ -314,6 +314,7 @@ function submitAvailabilityData(parkingLotId, value) {
     .catch(error => console.error('Error submitting availability data:', error));
 }
 
-
+//call the function once awhile
 readjson();
+setInterval(readjson, 100000);
 
