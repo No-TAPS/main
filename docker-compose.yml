@@ -7,10 +7,9 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: yourpassword
-      MYSQL_DATABASE: mydb
     volumes:
       - db-data:/var/lib/mysql
-
+      - ./init-db:/docker-entrypoint-initdb.d:ro
 
   web:
     build: .
@@ -18,13 +17,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    command: ["node", "entry.js"]
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_USER=No-Taps
-      - DATABASE_PASSWORD=Taps
-      - DATABASE_NAME=mydb
-
 
 volumes:
   db-data:

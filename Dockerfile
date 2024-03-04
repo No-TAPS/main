@@ -18,6 +18,3 @@ EXPOSE 3000
 
 # Define the command to run your app
 CMD [ "node", "entry.js" ]
-
-
-#NOTE!!!!!!: Replace index.js with the entry point to your Node.js application.

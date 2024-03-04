@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const cors = require('cors');
@@ -25,57 +25,54 @@ app.get('/ParkingStatus', (req, res) => {
 
 // Initial database connection configuration, without specifying a database
 const dbConfig = {
-  host: 'localhost',
+  host: 'db',
   user: 'No-Taps',
   password: 'Taps'
+  
 };
 
 const dbName = 'parkingLots';
 
-// Create a connection to check for the database existence and to create it if it does not exist
-const initialDbConnection = mysql.createConnection(dbConfig);
+// Function to connect to the database with retry logic
+function connectToDatabase(attempt = 1) {
+  const connection = mysql.createConnection(dbConfig);
 
-initialDbConnection.connect(err => {
-  if (err) {
-    console.error('Error connecting to the MySQL server:', err);
-    return;
-  }
-  console.log("Connected to MySQL server successfully!");
+  connection.connect(err => {
+    if (err) {
+      console.error(`Error connecting to the MySQL server (Attempt ${attempt}):`, err);
+      
+      if (attempt < 5) { // Try to reconnect up to 5 times
+        console.log(`Attempting to reconnect in 5 seconds...`);
+        setTimeout(() => connectToDatabase(attempt + 1), 5000); // Wait 5 seconds before retrying
+      } else {
+        console.error('Failed to connect to the MySQL server after 5 attempts:', err);
+        return;
+      }
+    } else {
+      console.log("Connected to MySQL server successfully!");
+      // Proceed with database and table setup...
+      setupDatabase(connection);
+    }
+  });
+}
 
-  // Create the database if it doesn't exist
-  initialDbConnection.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`, (err, result) => {
+// Function to setup database and tables
+function setupDatabase(connection) {
+  connection.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`, (err, result) => {
     if (err) throw err;
     console.log(`Database ${dbName} checked/created successfully`);
     
-    // Use the database
-    initialDbConnection.changeUser({database : dbName}, (err) => {
+    connection.changeUser({database : dbName}, err => {
       if (err) throw err;
 
-      // Create the table if it doesn't exist
-      const createTableQuery = `
-        CREATE TABLE IF NOT EXISTS parking_lots (
-          id INT AUTO_INCREMENT PRIMARY KEY,
-          lot_id INT NOT NULL,
-          fullness DECIMAL(5, 2) NOT NULL,
-          availability BOOLEAN NOT NULL
-        )`;
-
-      initialDbConnection.query(createTableQuery, (err, result) => {
-        if (err) throw err;
-        console.log("Table 'parking_lots' checked/created successfully");
-
-        // Close the initial connection
-        initialDbConnection.end();
-      });
+      // Your table creation logic here
+      // After successful setup, you might want to assign the connection to a global or more accessible variable for further operations
     });
   });
-});
+}
 
-// Reconfigure the database connection to use the newly created database
-const dbConnection = mysql.createConnection({
-  ...dbConfig,
-  database: dbName
-});
+// Invoke the connectToDatabase function to start the process
+connectToDatabase();
 
 // POST endpoint to receive parking lot data and write it to the database
 app.post('/parking-lot', (req, res) => {
