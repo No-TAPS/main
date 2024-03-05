@@ -1,21 +1,6 @@
 // leaflet.js
 
-
-///// auto refresh /////
-
-// setInterval(function() {
-//     window.location.reload();
-//   }, 600000);
-
-setInterval(async function() {
-    map.eachLayer(await function(layer){
-        if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
-            layer.remove();
-        }
-    });
-    await readjson();
-  }, 10000);
-
+////////////////////// MAP INITIALIZATION /////////////////////////// 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
 
@@ -37,24 +22,38 @@ var tooltip = L.tooltip({direction: 'right'})
 map.on('click', function () {
     tooltip.closeTooltip();
 });
-/// Global Varible ///
+
+///////////////////// GLOBALS /////////////////////
 var fullnesspopup;
 var tapspopup;
-
+var query = {};
 
 var wicon = L.icon({
     iconUrl: 'warning-icon.png',
     iconSize: [10, 10] 
-  });
+});
 
 
-////////////////////// COLOR LOGIC //////////////////////
+
+/////////////////////// AUTO UPDATE ///////////////////////
+setInterval(reset_map, 10000);
+async function reset_map() {
+    map.eachLayer(await function(layer){
+        if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
+            layer.remove();
+        }
+    });
+    await readjson();
+}
+
+//////////////////////////////// COLOR LOGIC ////////////////////////////////////
 var color = 'rgb(0,255,50)';
 var avail_zero = 'rgb(255,0,0)';
 var avail_one = 'rgb(255, 165, 0)';
 var avail_two = 'rgb(255, 255, 0)';
 var avail_three = 'rgb(165, 255, 0)';
 var avail_four = 'rgb(0,255,0)';
+
 /// Ramdom RGB Color ///
 function getRandomRGBColor() {
     var r = Math.floor(Math.random() * 256);
@@ -78,6 +77,7 @@ async function get_color(key) {
     return colors[idx];
 }
 
+///////////////////////////// GET TAPS REPORTING /////////////////////////////
 async function get_taps(key){
     var jsonURL = 'http://localhost:3000/ParkingStatus';
     var tapspresence = false;
