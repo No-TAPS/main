@@ -33,9 +33,7 @@ var wicon = L.icon({
     iconSize: [10, 10] 
 });
 
-
-
-/////////////////////// AUTO UPDATE ///////////////////////
+/////////////////////// AUTO UPDATE LOGIC ///////////////////////
 setInterval(reset_map, 10000);
 async function reset_map() {
     map.eachLayer(await function(layer){
@@ -44,6 +42,14 @@ async function reset_map() {
         }
     });
     await readjson();
+}
+
+/////////////////////// SEARCH QUERY ///////////////////////
+function create_query(permits, rc_check, pm_hourly_val, pm_check) {
+    console.log(permits);
+    console.log(rc_check);
+    console.log(pm_hourly_val);
+    console.log(pm_check);
 }
 
 //////////////////////////////// COLOR LOGIC ////////////////////////////////////

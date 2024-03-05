@@ -67,16 +67,11 @@
 
             const checked_permits = permit_boxes.querySelectorAll('input[type="checkbox"]:checked');
             var permits_selected = Array.from(checked_permits).map(x => x.value)
-            console.log(permits_selected);
-
-            console.log(rc_permit_box.checked);
-
-            console.log(pm_hourly_select.value);
 
             const checked_pm = pm_boxes.querySelectorAll('input[type="checkbox"]');
             var pm_selected = Array.from(checked_pm).map(x => x.checked);
-            console.log(pm_selected);
 
+            create_query(permits_selected, rc_permit_box.checked, pm_hourly_select.value, pm_selected);
         }
         const permits = ["A", "B", "C", "C111A", "C119", "C152", "C153", "C154", "C155", "C156", "C157", "C158", "C159", "C162", "C206", "C301", "R", "RMC", "EV", "MC", "N", "NC", "HC", "FSH", "Medical"];
         const checkbox = document.querySelector("#permit-check-boxes");
