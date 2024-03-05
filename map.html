@@ -5,133 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaflet Map - UCSC</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 900px;
-            z-index: 1;
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            padding-top: 20px;
-            text-align: center;
-            color: white;
-            z-index: 2; 
-        }
-
-        
-        .search-bar {
-            width: 80%;
-            margin: 10px auto;
-            padding: 10px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 8px;
-            box-sizing: border-box;
-        }
-
-        .search-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        .search-button:hover {
-            background-color: #45a049;
-        }
-
-        .additional-buttons {
-            margin-top: 20px;
-        }
-
-        .additional-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #008CBA;
-            color: white;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        .additional-button:hover {
-            background-color: #007bb5;
-        }
-
-        .text-box {
-            width: 300px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            display: none;
-            z-index: 3;
-            border: 1px solid #ccc;
-        }
-
-        .leaflet-overlay-pane svg {
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none;
-            user-select: none; 
-        }
-
-
-        .text-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 8px;
-            box-sizing: border-box;
-        }
-
-        .availability-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .availability-button {
-            width: 40px;
-            height: 40px;
-            margin: 5px;
-            background-color: #008CBA;
-            color: white;
-            cursor: pointer;
-        }
-
-        .availability-button:hover {
-            background-color: #007bb5;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        .submit-button:hover {
-            background-color: #45a049;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </head>
@@ -140,35 +14,31 @@
     <div class="sidebar">
         <div class="search-bar">
             <input type="text" class="search-input" id="parkingLotSearch" placeholder="Search by name, lot #, permit, ...">
+            
+            <div class="permit-check-boxes">
+            </div>
+
+            <div class="check-boxes">
+                <label>
+                    R/C permits after 5 p.m.
+                    <input type="checkbox">
+                </label>
+                <label>
+                    ParkMobile Daily
+                    <input type="checkbox">
+                </label>
+                <label>
+                    ParkMobile Eve / Wknd
+                    <input type="checkbox">
+                </label>
+            </div>
+
             <button class="search-button" onclick="searchParkingLots()">Search</button>
         </div>
-
-        <!-- <div class="additional-buttons">
-            <button class="additional-button" onclick="toggleTextBox('tapsBox')">Taps Reporting</button>
-            <button class="additional-button" onclick="showAvailabilityPopup()">Availability</button>
-        </div> -->
+        
     </div>
 
     <div id="map"></div>
-
-    <!-- <div class="text-box" id="tapsBox">
-        <span class="close-button" onclick="toggleTextBox('tapsBox')">&times;</span>
-        <input type="text" class="text-input" id="tapsInput" placeholder="Enter Parking ID #">
-        <button class="submit-button" onclick="submitTapsData()">Submit</button>
-    </div>
-
-    <div class="text-box" id="availabilityBox">
-        <span class="close-button" onclick="toggleTextBox('availabilityBox')">&times;</span>
-        <input type="text" class="text-input" id="availabilityInput" placeholder="Enter Parking ID #">
-        <div class="availability-buttons">
-            <button class="availability-button" onclick="submitAvailabilityData(0)">0</button>
-            <button class="availability-button" onclick="submitAvailabilityData(1)">1</button>
-            <button class="availability-button" onclick="submitAvailabilityData(2)">2</button>
-            <button class="availability-button" onclick="submitAvailabilityData(3)">3</button>
-            <button class="availability-button" onclick="submitAvailabilityData(4)">4</button>
-        </div>
-    </div> -->
-    
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -176,8 +46,21 @@
     <script src="leaflet.js"></script>
     <script>
         function searchParkingLots() {
-            (document.getElementById('parkingLotSearch').value)
+            const permit_boxes = document.querySelector(".permit-check-boxes");
+            const checked = permit_boxes.querySelectorAll('input[type="checkbox"]:checked');
+            permits_selected = Array.from(checked).map(x => x.value)
+            console.log(permits_selected);
         }
+        const permits = ["A", "B", "C", "C111A", "C119", "C152", "C153", "C154", "C155", "C156", "C157", "C158", "C159", "C162", "C206", "C301", "R", "RMC", "EV", "MC", "N", "NC", "HC", "FSH", "Medical"];
+        const checkbox = document.querySelector(".permit-check-boxes");
+
+        permits.forEach(permit => {
+            var element = document.createElement("label");
+            element.setAttribute("class", "check-box-container");
+            element.innerHTML = permit + `<input type="checkbox" value="` + permit + `">`;
+            checkbox.appendChild(element);
+        });
+
     </script>
 
 </body>

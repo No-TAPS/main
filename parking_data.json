@@ -592,7 +592,7 @@
         "157": {
             "name": "Graduate Student Apartments",
             "address": "645 Heller Dr, Santa Cruz, CA 95064",
-            "permits": ["Lot 157 permit", "MC", "HC"],
+            "permits": ["C157", "MC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
             "parkmobile_daily": false,

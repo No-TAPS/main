@@ -2,11 +2,11 @@
 
 
 ///// auto refresh /////
-<<<<<<< HEAD
+
 // setInterval(function() {
 //     window.location.reload();
 //   }, 600000);
-=======
+
 setInterval(async function() {
     map.eachLayer(await function(layer){
         if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
@@ -125,12 +125,11 @@ function readjson() {
             var jsonData = xhr.response;
 
             // TEMP need to figure out a way to trigger this and import search queries
-            if (false) {
+            if (true) {
                 const processor = new JsonProcessor(jsonData);
-                jsonData = processor.searchByCriteria("permits", "A");
-                console.log(filteredData);
+                jsonData = processor.searchByMultipleCriteria({ "permits": ["HC", "A"], "r_c_after_5": false });
+                console.log(jsonData);
             }
-            
 
             // parse the data
             for (var key in jsonData) {
@@ -337,8 +336,3 @@ function submitAvailabilityData(parkingLotId, value) {
 
 
 readjson();
-<<<<<<< HEAD
-setInterval(readjson, 100000);
-
-=======
->>>>>>> d2bce06ba1b84d5fd11c2fb82a75fc34f01b0bfd
