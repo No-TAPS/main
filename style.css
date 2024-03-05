@@ -29,7 +29,7 @@
    box-sizing: border-box;
 }
 
-.permit-check-boxes {
+.sidebar-container {
    display: block;
    position: relative;
    margin-bottom: 12px;
