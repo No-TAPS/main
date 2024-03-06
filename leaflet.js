@@ -34,7 +34,7 @@ var wicon = L.icon({
 });
 
 /////////////////////// AUTO UPDATE LOGIC ///////////////////////
-setInterval(reset_map, 10000);
+setInterval(reset_map, 60000);
 async function reset_map() {
     map.eachLayer(await function(layer){
         if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
