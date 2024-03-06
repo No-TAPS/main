@@ -11,19 +11,19 @@ services:
   #     - db-data:/var/lib/mysql
   #     - ./init-db:/docker-entrypoint-initdb.d:ro
 
-  # web:
-  #   build: .
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - db
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    # depends_on:
+    #   - db
   caddy:
     image: caddy:alpine
     volumes:
       - ./html:/usr/share/caddy
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
-      - "80:80"
+      - "9000:80"
 
 volumes:
   db-data:
