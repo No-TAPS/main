@@ -23,7 +23,7 @@ services:
       - ./html:/usr/share/caddy
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
-      - "9000:80"
+      - "80:80"
 
 volumes:
   db-data:
