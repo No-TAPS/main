@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install express mysql2 body-parser
 
 # Bundle your app's source code inside the Docker image
-COPY . .
+COPY ./html .
 
 # Your app binds to port 3000 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 3000
