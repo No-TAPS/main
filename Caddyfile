@@ -1,4 +1,7 @@
 :80
 
 root * /usr/share/caddy
+# Add a rewrite to serve map.html as the default page
+rewrite * /map.html
+
 file_server
