@@ -45,11 +45,21 @@ async function reset_map() {
 }
 
 /////////////////////// SEARCH QUERY ///////////////////////
-function create_query(permits, rc_check, pm_hourly_val, pm_check) {
-    console.log(permits);
-    console.log(rc_check);
-    console.log(pm_hourly_val);
-    console.log(pm_check);
+function create_query(search_query) {
+    var out = {}
+
+    if (search_query["permits"].length > 0) {
+        out["permits"] = search_query["permits"];
+    }
+    if (search_query["adv_opt"]) {
+        out["r_c_after_5"] = search_query["r_c_after_5"];
+        out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
+        out["parkmobile_daily"] = search_query["parkmobile_daily"];
+        out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
+    }
+
+    query = out;
+    reset_map();
 }
 
 //////////////////////////////// COLOR LOGIC ////////////////////////////////////
@@ -130,11 +140,10 @@ function readjson() {
         if (xhr.status === 200) {
             var jsonData = xhr.response;
 
-            // TEMP need to figure out a way to trigger this and import search queries
-            if (true) {
+            if (Object.keys(query).length) {
+                console.log(query);
                 const processor = new JsonProcessor(jsonData);
-                jsonData = processor.searchByMultipleCriteria({ "permits": ["HC", "A"], "r_c_after_5": false });
-                console.log(jsonData);
+                jsonData = processor.searchByMultipleCriteria(query);
             }
 
             // parse the data

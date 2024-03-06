@@ -18,6 +18,13 @@
             <div class="sidebar-container" id="permit-check-boxes">
             </div>
 
+            <div class="sidebar-container" id="adv-opt">
+                <label>
+                    Advanced Options
+                    <input id="adv-opt-check" type="checkbox">
+                </label>
+            </div>
+
             <div class="sidebar-container" id="r-c-permits">
                 <label>
                     R/C permits after 5 p.m.
@@ -61,6 +68,7 @@
     <script>
         function searchParkingLots() {
             const permit_boxes = document.querySelector("#permit-check-boxes");
+            const adv_opt_box = document.getElementById('adv-opt-check');
             const rc_permit_box = document.getElementById('rc-permit-check');
             const pm_hourly_select = document.getElementById('pm-hourly-select');
             const pm_boxes = document.querySelector('#pm-check-boxes');
@@ -71,7 +79,16 @@
             const checked_pm = pm_boxes.querySelectorAll('input[type="checkbox"]');
             var pm_selected = Array.from(checked_pm).map(x => x.checked);
 
-            create_query(permits_selected, rc_permit_box.checked, pm_hourly_select.value, pm_selected);
+            var selected_search = {
+                "permits": permits_selected,
+                "adv_opt": adv_opt_box.checked,
+                "r_c_after_5": rc_permit_box.checked,
+                "parkmobile_hourly": parseFloat(pm_hourly_select.value),
+                "parkmobile_daily": pm_selected[0],
+                "parkmobile_eve_wknd": pm_selected[1]
+            };
+
+            create_query(selected_search);
         }
         const permits = ["A", "B", "C", "C111A", "C119", "C152", "C153", "C154", "C155", "C156", "C157", "C158", "C159", "C162", "C206", "C301", "R", "RMC", "EV", "MC", "N", "NC", "HC", "FSH", "Medical"];
         const checkbox = document.querySelector("#permit-check-boxes");
