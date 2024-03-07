@@ -33,6 +33,7 @@ const dbConfig = {
 
 const dbName = 'parkingLots';
 
+
 // Function to connect to the database with retry logic
 function connectToDatabase(attempt = 1) {
   const connection = mysql.createConnection(dbConfig);
@@ -65,26 +66,78 @@ function setupDatabase(connection) {
     connection.changeUser({database : dbName}, err => {
       if (err) throw err;
 
-      // Your table creation logic here
-      // After successful setup, you might want to assign the connection to a global or more accessible variable for further operations
+      const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS parking_lots (
+        lot_id INT AUTO_INCREMENT PRIMARY KEY,
+        fullness INT NOT NULL,
+        taps INT NOT NULL
+      )`;
+    connection.query(createTableQuery, (err, result) => {
+      if (err) {
+        throw err;
+      }
+
+      console.log("Table 'parking_lots' checked/created successfully");
+
+      global.dbConnection = connection; // Assigning to a global variable for accessibility
+      console.log('dbconnection assigned');
+      initializeParkingLotData();
+      console.log('exited parkinglotdata');
     });
   });
+});
 }
+
+const initializeParkingLotData = () => {
+  // Read and parse the JSON file
+  console.log('beginning function');
+  fs.readFile('./parking_data.json', (err, data) => {
+    if (err) {
+      console.error("Error reading JSON file", err);
+      return;
+    }
+    console.log('sucessfully read json file')
+    const parkingData = JSON.parse(data);
+    const lotIds = Object.keys(parkingData); // Assuming the JSON structure suits this
+
+    // Assuming you're looping through lotIds to insert/update each
+    lotIds.forEach(lotId => {
+      const { fullness, taps } = {fullness: 0, taps: true} // Example extraction, adjust according to actual structure
+      const insertQuery = `
+        INSERT INTO parking_lots (lot_id, fullness, taps)
+        VALUES (?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+        fullness = VALUES(fullness),
+        taps = VALUES(taps);
+      `;
+
+      // Execute the query for each parking lot
+      global.dbConnection.query(insertQuery, [lotId, fullness, taps], (err, results) => {
+        if (err) {
+          console.error("Error inserting/updating parking lot data", err);
+        } else {
+          console.log(`Parking lot data for ${lotId} inserted/updated successfully.`);
+        }
+      });
+    });
+  });
+};
+
 
 // Invoke the connectToDatabase function to start the process
 connectToDatabase();
 
 // POST endpoint to receive parking lot data and write it to the database
 app.post('/parking-lot', (req, res) => {
-  const { lotId, fullness, availability } = req.body;
+  const { lotId, fullness, taps } = req.body;
 
-  if (lotId == null || fullness == null || availability == null) {
+  if (lotId == null || fullness == null || taps == null) {
     return res.status(400).send('Missing data for lotId, fullness, or availability');
   }
 
-  const query = `INSERT INTO parking_lots (lot_id, fullness, availability) VALUES (?, ?, ?)`;
+  const query = `INSERT INTO parking_lots (lot_id, fullness, taps) VALUES (?, ?, ?)`;
 
-  dbConnection.query(query, [lotId, fullness, availability], (err, result) => {
+  dbConnection.query(query, [lotId, fullness, taps], (err, result) => {
     if (err) {
       console.error('Failed to write parking lot data:', err);
       return res.status(500).send('Failed to write parking lot data');
@@ -101,7 +154,7 @@ app.post('/submitAvailabilityData', (req, res) => {
     return res.status(400).send('Missing data for parkingLotId or availabilityValue');
   }
 
-  const query = `UPDATE parking_lots SET availability = ? WHERE lot_id = ?`;
+  const query = `UPDATE parking_lots SET fullness = ? WHERE lot_id = ?`;
 
   dbConnection.query(query, [availabilityValue, parkingLotId], (err, result) => {
     if (err) {
@@ -115,10 +168,11 @@ app.post('/submitAvailabilityData', (req, res) => {
 });
 
 app.post('/submitTapsData', (req, res) => {
+  console.log('posted')
   const { parkingLotId, tapsValue } = req.body;
 
   if (parkingLotId == null || tapsValue == null) {
-    return res.status(400).send('Missing data for parkingLotId or tapsValue');
+    return res.status(400).send({message: 'missing data'});
   }
 
   const query = `UPDATE parking_lots SET taps = ? WHERE lot_id = ?`;
@@ -126,7 +180,7 @@ app.post('/submitTapsData', (req, res) => {
   dbConnection.query(query, [tapsValue, parkingLotId], (err, result) => {
     if (err) {
       console.error('Failed to update taps data:', err);
-      return res.status(500).send('Failed to update taps data');
+      return res.status(500).send({message: 'failed to update taps data'});
     }
 
     console.log('Taps data updated successfully:', result);

@@ -207,7 +207,7 @@ function processDataAndDisplayPolygons(data) {
                 }
             }
 
-            // Check if any valid coordinates were extracted
+            // Check if any valid coordinates were extracted    // After successful setup, you might want to assign the connection to a global or more accessible variable for further operations
             if (coordinates.length > 0) {
                 // debug
                 // console.log(`Area Number: ${areaNumber}`);
@@ -246,7 +246,7 @@ function submitTapsData(parkingLotId) {
     })
     .then(response => response.json())
     .then(data => console.log('Taps data submitted successfully:', data))
-    .catch(error => console.error('Error submitting taps data:', error));
+    .catch(error => console.error('Error submitting TAPS data:', error));
 }
 
 function submitAvailabilityData(parkingLotId, value) {
