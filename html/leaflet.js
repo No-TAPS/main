@@ -64,11 +64,11 @@ function create_query(search_query) {
 
 //////////////////////////////// COLOR LOGIC ////////////////////////////////////
 var color = 'rgb(0,255,50)';
-var avail_zero = 'rgb(255,0,0)';
-var avail_one = 'rgb(255, 165, 0)';
+var avail_zero = 'rgb(0,255,0)';
+var avail_one = 'rgb(165, 255, 0)';
 var avail_two = 'rgb(255, 255, 0)';
-var avail_three = 'rgb(165, 255, 0)';
-var avail_four = 'rgb(0,255,0)';
+var avail_three = 'rgb(255, 165, 0)';
+var avail_four = 'rgb(255,0,0)';
 
 /// Ramdom RGB Color ///
 function getRandomRGBColor() {
