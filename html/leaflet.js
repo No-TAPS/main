@@ -235,7 +235,7 @@ function toggleTextBox(boxId) {
 }
 
 function submitTapsData(parkingLotId) {
-    var tapsValue = true;
+    var tapsValue = 1;
 
     fetch('http://localhost:3000/submitTapsData', {
         method: 'POST',
