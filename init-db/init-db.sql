@@ -2,11 +2,10 @@ CREATE DATABASE IF NOT EXISTS parkingLots;
 USE parkingLots;
 
 CREATE TABLE IF NOT EXISTS parking_lots (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  lot_id INT NOT NULL,
-  fullness DECIMAL(5, 2) NOT NULL,
-  availability BOOLEAN NOT NULL
-);
+        lot_id INT PRIMARY KEY,
+        fullness INT NOT NULL,
+        taps INT NOT NULL
+      );
 
 CREATE USER IF NOT EXISTS 'No-Taps'@'%' IDENTIFIED BY 'Taps';
 GRANT ALL PRIVILEGES ON parkingLots.* TO 'No-Taps'@'%';

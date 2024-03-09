@@ -74,6 +74,7 @@ function setupDatabase(connection) {
       )`;
     connection.query(createTableQuery, (err, result) => {
       if (err) {
+        console.error("error creating table");
         throw err;
       }
 
@@ -153,47 +154,45 @@ app.post('/submitAvailabilityData', (req, res) => {
   const { parkingLotId, availabilityValue } = req.body;
 
   if (parkingLotId == null || availabilityValue == null) {
-    return res.status(400).send('Missing data for parkingLotId or availabilityValue');
+    return res.status(400).json({message: 'Missing data for parkingLotId or availabilityValue'});
   }
 
-  // First, check if the parking lot exists
   const checkQuery = `SELECT lot_id FROM parking_lots WHERE lot_id = ?`;
 
   dbConnection.query(checkQuery, [parkingLotId], (err, result) => {
     if (err) {
       console.error('Error checking for parking lot existence:', err);
-      return res.status(500).send('Failed to check parking lot existence');
+      return res.status(500).json({message: 'Failed to check parking lot existence'});
     }
 
     if (result.length === 0) {
-      // If the parking lot does not exist, insert it
       const insertQuery = `INSERT INTO parking_lots (lot_id, fullness, taps) VALUES (?, ?, 0)`;
 
       dbConnection.query(insertQuery, [parkingLotId, availabilityValue], (err, insertResult) => {
         if (err) {
           console.error('Failed to insert new parking lot:', err);
-          return res.status(500).send('Failed to insert new parking lot');
+          return res.status(500).json({message: 'Failed to insert new parking lot'});
         }
 
         console.log('New parking lot added successfully:', insertResult);
-        res.status(200).send({ message: 'New parking lot added and availability data updated successfully' });
+        res.status(200).json({message: 'New parking lot added and availability data updated successfully'});
       });
     } else {
-      // If the parking lot exists, update it
       const updateQuery = `UPDATE parking_lots SET fullness = ? WHERE lot_id = ?`;
 
       dbConnection.query(updateQuery, [availabilityValue, parkingLotId], (err, updateResult) => {
         if (err) {
           console.error('Failed to update availability data:', err);
-          return res.status(500).send('Failed to update availability data');
+          return res.status(500).json({message: 'Failed to update availability data'});
         }
 
         console.log('Availability data updated successfully:', updateResult);
-        res.status(200).send({ message: 'Availability data updated successfully' });
+        res.status(200).json({message: 'Availability data updated successfully'});
       });
     }
   });
 });
+
 
 
 app.post('/submitTapsData', (req, res) => {
