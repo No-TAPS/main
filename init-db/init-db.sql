@@ -1,8 +1,6 @@
 CREATE DATABASE IF NOT EXISTS parkingLots;
 USE parkingLots;
 
-ALTER TABLE parking_lots ADD COLUMN taps INT;
-
 
 CREATE TABLE IF NOT EXISTS parking_lots (
         lot_id INT PRIMARY KEY,
