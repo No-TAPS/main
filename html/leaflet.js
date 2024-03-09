@@ -1,13 +1,13 @@
 // leaflet.js
-//setTimeout()
-//unit test
-//double click
 
+////////////////////// MAP INITIALIZATION /////////////////////////// 
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
 
 // Initialize the map
-var map = L.map('map').setView(ucscCoordinates, 15);
+var map = L.map('map', {
+    zoomControl: false
+}).setView(ucscCoordinates, 15);
 
 // Add a tile layer (using OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -23,13 +23,53 @@ map.on('click', function () {
     tooltip.closeTooltip();
 });
 
-////////////////////// COLOR LOGIC //////////////////////
+///////////////////// GLOBALS /////////////////////
+var fullnesspopup;
+var tapspopup;
+var query = {};
+
+var wicon = L.icon({
+    iconUrl: 'warning-icon.png',
+    iconSize: [10, 10] 
+});
+
+/////////////////////// AUTO UPDATE LOGIC ///////////////////////
+setInterval(reset_map, 60000);
+async function reset_map() {
+    map.eachLayer(await function(layer){
+        if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
+            layer.remove();
+        }
+    });
+    await readjson();
+}
+
+/////////////////////// SEARCH QUERY ///////////////////////
+function create_query(search_query) {
+    var out = {}
+
+    if (search_query["permits"].length > 0) {
+        out["permits"] = search_query["permits"];
+    }
+    if (search_query["adv_opt"]) {
+        out["r_c_after_5"] = search_query["r_c_after_5"];
+        out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
+        out["parkmobile_daily"] = search_query["parkmobile_daily"];
+        out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
+    }
+
+    query = out;
+    reset_map();
+}
+
+//////////////////////////////// COLOR LOGIC ////////////////////////////////////
 var color = 'rgb(0,255,50)';
 var avail_zero = 'rgb(255,0,0)';
-var avail_one = 'rgb(255,90,0)';
+var avail_one = 'rgb(255, 165, 0)';
 var avail_two = 'rgb(255, 255, 0)';
-var avail_three = 'rgb(100,255,0)';
-var avail_four = 'rgb(0,255,25)';
+var avail_three = 'rgb(165, 255, 0)';
+var avail_four = 'rgb(0,255,0)';
+
 /// Ramdom RGB Color ///
 function getRandomRGBColor() {
     var r = Math.floor(Math.random() * 256);
@@ -38,9 +78,46 @@ function getRandomRGBColor() {
     return `rgb(${r},${g},${b})`;
 }
 
-function pick_random_color() {
-    colors = [avail_zero, avail_one, avail_two, avail_three, avail_four];
-    return colors[Math.floor(Math.random() * colors.length)];
+async function get_color(key) {
+    const colors = [avail_zero, avail_one, avail_two, avail_three, avail_four];
+    const jsonURL = 'http://localhost:3000/parking-lot/' + key; 
+
+    try {
+        const response = await fetch(jsonURL);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('fullness')) {
+                return colors[data.fullness];
+            }
+        } else {
+            console.error('Error fetching data:', response.status);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
+    return colors[4]; 
+}
+
+///////////////////////////// GET TAPS REPORTING /////////////////////////////
+async function get_taps(key) {
+    const jsonURL = `http://localhost:3000/parking-lot/` + key; 
+
+    try {
+        const response = await fetch(jsonURL);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('taps')) {
+                return data.taps; 
+            }
+        } else {
+            console.error('Error fetching data:', response.status);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
+    return 0; 
 }
 
 // text box setting
@@ -71,9 +148,16 @@ function readjson() {
     xhr.open('GET', jsonURL, true);
     xhr.responseType = 'json';
 
-    xhr.onload = function () {
+    xhr.onload = async function () {
         if (xhr.status === 200) {
             var jsonData = xhr.response;
+
+            if (Object.keys(query).length) {
+                console.log(query);
+                const processor = new JsonProcessor(jsonData);
+                jsonData = processor.searchByMultipleCriteria(query);
+            }
+
             // parse the data
             for (var key in jsonData) {
                 if (jsonData.hasOwnProperty(key)) {
@@ -111,11 +195,24 @@ function readjson() {
                     //     .bindPopup(popupContent)
                     //     .addTo(map);
 
-                    L.polygon(coordinates, { fillColor: pick_random_color(), fillOpacity: 0.3 })
+                    var polygon = L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
                     .addTo(map)
                     .bindPopup(popupContent) 
                     //right click function
                     .on('contextmenu', get_menu_function(key, area));
+                    // taps warning
+                    var tapspresence = get_taps(key);
+                    tapspresence.then(function(value) {
+                        //console.log(key, value);
+                        if (value == 1){
+                            var center = polygon.getBounds().getCenter();
+                            L.marker(center, {icon: wicon}).addTo(map);
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                    });
+                
                 }
             }
         } else {
@@ -150,7 +247,7 @@ function get_menu_function(key, area) {
                 '<button class="availability-button" onclick="submitAvailabilityData(' + key + ', 4)">4<\/button>' +
                 '<\/div>';
             
-            var fullnesspopup = L.popup()
+            fullnesspopup = L.popup()
                 .setLatLng(event.latlng)
                 .setContent(fullnessBoxContent)
                 .openOn(map);
@@ -164,7 +261,7 @@ function get_menu_function(key, area) {
                 '<button class="submit-button" onclick="submitTapsData(' + key + ')">TAPS</button>' +
                 '</div>';
 
-            var tapspopup = L.popup()
+            tapspopup = L.popup()
                 .setLatLng(event.latlng)
                 .setContent(tapsBoxContent)
                 .openOn(map);
@@ -207,7 +304,7 @@ function processDataAndDisplayPolygons(data) {
                 }
             }
 
-            // Check if any valid coordinates were extracted    // After successful setup, you might want to assign the connection to a global or more accessible variable for further operations
+            // Check if any valid coordinates were extracted
             if (coordinates.length > 0) {
                 // debug
                 // console.log(`Area Number: ${areaNumber}`);
