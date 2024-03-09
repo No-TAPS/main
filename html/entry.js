@@ -42,11 +42,11 @@ function connectToDatabase(attempt = 1) {
     if (err) {
       console.error(`Error connecting to the MySQL server (Attempt ${attempt}):`, err);
       
-      if (attempt < 5) { // Try to reconnect up to 5 times
+      if (attempt < 10) { // Try to reconnect up to 5 times
         console.log(`Attempting to reconnect in 5 seconds...`);
         setTimeout(() => connectToDatabase(attempt + 1), 5000); // Wait 5 seconds before retrying
       } else {
-        console.error('Failed to connect to the MySQL server after 5 attempts:', err);
+        console.error('Failed to connect to the MySQL server after 10 attempts:', err);
         return;
       }
     } else {
@@ -77,7 +77,10 @@ function setupDatabase(connection) {
         throw err;
       }
 
+      else{
+
       console.log("Table 'parking_lots' checked/created successfully");
+      }
 
       global.dbConnection = connection; // Assigning to a global variable for accessibility
       console.log('dbconnection assigned');
@@ -102,7 +105,6 @@ const initializeParkingLotData = () => {
 
     // Assuming you're looping through lotIds to insert/update each
     lotIds.forEach(lotId => {
-      const { fullness, taps } = {fullness: 0, taps: true} // Example extraction, adjust according to actual structure
       const insertQuery = `
         INSERT INTO parking_lots (lot_id, fullness, taps)
         VALUES (?, ?, ?)
@@ -112,9 +114,9 @@ const initializeParkingLotData = () => {
       `;
 
       // Execute the query for each parking lot
-      global.dbConnection.query(insertQuery, [lotId, fullness, taps], (err, results) => {
+      global.dbConnection.query(insertQuery, [lotId, 0, 0], (err, results) => {
         if (err) {
-          console.error("Error inserting/updating parking lot data", err);
+          //console.error("Error inserting/updating parking lot data", err);
         } else {
           console.log(`Parking lot data for ${lotId} inserted/updated successfully.`);
         }
