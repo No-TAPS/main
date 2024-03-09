@@ -15,13 +15,31 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // first time user guide
-var tooltip = L.tooltip({direction: 'right'})
-    .setLatLng([36.990706, -122.050885])
-    .setContent('User Guide<br />Single click on the parking lot to get detail info. <br />Double click for reporting.')
-    .addTo(map);
-map.on('click', function () {
-    tooltip.closeTooltip();
+// var tooltip = L.tooltip({direction: 'right'})
+//     .setLatLng([36.990706, -122.050885])
+//     .setContent('User Guide<br />Single click on the parking lot to get detail info. <br />Double click for reporting.')
+//     .addTo(map);
+// map.on('click', function () {
+//     tooltip.closeTooltip();
+// });
+document.addEventListener('DOMContentLoaded', function () {
+    var helpButton = document.getElementById('help-button');
+    var helpContent = document.getElementById('help-content');
+
+    if (helpButton && helpContent) {
+        helpButton.addEventListener('click', function () {
+            helpContent.style.display = (helpContent.style.display === 'none' || helpContent.style.display === '') ? 'block' : 'none';
+        });
+
+        // Close help guide when clicking outside of it
+        map.on('click', function (event) {
+            if (!helpButton.contains(event.target) && !helpContent.contains(event.target)) {
+                helpContent.style.display = 'none';
+            }
+        });
+    }
 });
+
 
 ///////////////////// GLOBALS /////////////////////
 var fullnesspopup;

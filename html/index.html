@@ -11,6 +11,36 @@
             z-index: 1;
         }
 
+        #help-guide {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 3000;
+        }
+
+        #help-button {
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+
+        #help-content {
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 400px;
+            position: absolute;
+            bottom: 40px;
+            right: 0;
+            z-index: 1000;
+        }
+
+        #help-content {
+            overflow-y: auto;
+            max-height: 400px; 
+        }
+
+
         .sidebar {
             height: 100%;
             width: 250px;
@@ -155,6 +185,34 @@
             (document.getElementById('parkingLotSearch').value)
         }
     </script>
+
+<div id="help-guide">
+    <button id="help-button">?</button>
+    <div id="help-content">
+        <p>Welcome to the UCSC Parking Map!</p>
+        <p>Here are some tips to help you navigate:</p>
+        <ul>
+            <li><strong>Single Click:</strong> Get detailed information about a parking lot.</li>
+            <li><strong>Double Click:</strong> Report parking lot conditions.</li>
+            <li><strong>Exclamation Point (!):</strong> Indicates TAPS presence in a parking lot.</li>
+        </ul>
+        <p><strong>Availability Numbers:</strong></p>
+        <ul>
+            <li><strong>0:</strong> Empty</li>
+            <li><strong>1:</strong> Mostly Empty</li>
+            <li><strong>2:</strong> Half Full</li>
+            <li><strong>3:</strong> Mostly Full</li>
+            <li><strong>4:</strong> Full</li>
+        </ul>
+        <p><strong>Color Gradient:</strong></p>
+        <p>The parking lots are color-coded to represent their fullness:</p>
+        <ul>
+            <li><strong>Green:</strong> Empty or mostly empty</li>
+            <li><strong>Yellow:</strong> Half full</li>
+            <li><strong>Red:</strong> Mostly full or full</li>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
