@@ -35,7 +35,7 @@ class JsonProcessor {
                 }
                 return entry[key] === criteria[key];
             });
-        }).map(id => this.data[id]);
+        }).map(id => [id, this.data[id]]);
     }
 
     // Filter entries by a custom filter function

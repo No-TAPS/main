@@ -70,10 +70,18 @@ function create_query(search_query) {
         out["permits"] = search_query["permits"];
     }
     if (search_query["adv_opt"]) {
-        out["r_c_after_5"] = search_query["r_c_after_5"];
-        out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
-        out["parkmobile_daily"] = search_query["parkmobile_daily"];
-        out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
+        if (search_query["r_c_after_5"]) {
+            out["r_c_after_5"] = search_query["r_c_after_5"];
+        }
+        if (search_query["parkmobile_hourly"]) {
+            out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
+        }
+        if (search_query["parkmobile_daily"]) {
+            out["parkmobile_daily"] = search_query["parkmobile_daily"];
+        }
+        if (search_query["parkmobile_eve_wknd"]) {
+            out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
+        }
     }
 
     query = out;
@@ -173,8 +181,9 @@ function readjson() {
             if (Object.keys(query).length) {
                 console.log(query);
                 const processor = new JsonProcessor(jsonData);
-                jsonData = processor.searchByMultipleCriteria(query);
+                jsonData = Object.fromEntries(processor.searchByMultipleCriteria(query));
             }
+            console.log(jsonData)
 
             // parse the data
             for (var key in jsonData) {
