@@ -66,12 +66,15 @@ function setupDatabase(connection) {
     connection.changeUser({database : dbName}, err => {
       if (err) throw err;
 
-      const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS parking_lots (
-        lot_id INT PRIMARY KEY,
+      const createTableQuery = `CREATE TABLE IF NOT EXISTS parking_lots (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        lot_id VARCHAR(255) NOT NULL,
         fullness INT NOT NULL,
-        taps INT NOT NULL
-      )`;
+        taps INT NOT NULL,
+        last_updated TIMESTAMP DEFAULT NULL,
+        UNIQUE lot_id_unique (lot_id)
+    )`;
+
     connection.query(createTableQuery, (err, result) => {
       if (err) {
         console.error("error creating table");
@@ -215,7 +218,7 @@ app.post('/submitTapsData', (req, res) => {
 
       const query = 'UPDATE parking_lots SET taps = ?, last_updated = ? WHERE lot_id = ?';
 
-      dbConnection.query(query, [tapsValue, formattedTimestamp, parkingLotId], (err, result) => {
+      dbConnection.query(query, [tapsValue, formattedTimestamp, String(parkingLotId)], (err, result) => {
           if (err) {
               console.error('Failed to update taps data:', err);
               return res.status(500).send({ message: 'Failed to update taps data', error: err.message });
