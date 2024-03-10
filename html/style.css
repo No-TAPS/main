@@ -1,0 +1,172 @@
+#map {
+    height: 900px;
+    z-index: 1;
+}
+
+#help-guide {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 3000;
+}
+
+#help-button {
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+#help-content {
+    display: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 400px;
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    z-index: 1000;
+}
+
+#help-content {
+    overflow-y: auto;
+    max-height: 400px; 
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    z-index: 2; 
+}
+
+
+.search-bar {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.sidebar-container {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ }
+ 
+ .check-box-container {
+    display: inline-block;
+    flex-wrap: wrap;
+ }
+
+.search-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+
+.additional-buttons {
+    margin-top: 20px;
+}
+
+.additional-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.additional-button:hover {
+    background-color: #007bb5;
+}
+
+.text-box {
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    display: none;
+    z-index: 3;
+    border: 1px solid #ccc;
+}
+
+.leaflet-overlay-pane svg {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+
+.text-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.availability-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.availability-button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+}
+
+.availability-button:hover {
+    background-color: #007bb5;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
