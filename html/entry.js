@@ -154,7 +154,7 @@ app.post('/submitAvailabilityData', (req, res) => {
   const { parkingLotId, availabilityValue } = req.body;
 
   if (parkingLotId == null || availabilityValue == null) {
-    return res.status(400).json({message: 'Missing data for parkingLotId or availabilityValue'});
+    return res.status(400).json({ message: 'Missing data for parkingLotId or availabilityValue' });
   }
 
   const checkQuery = `SELECT lot_id FROM parking_lots WHERE lot_id = ?`;
@@ -162,7 +162,7 @@ app.post('/submitAvailabilityData', (req, res) => {
   dbConnection.query(checkQuery, [parkingLotId], (err, result) => {
     if (err) {
       console.error('Error checking for parking lot existence:', err);
-      return res.status(500).json({message: 'Failed to check parking lot existence'});
+      return res.status(500).json({ message: 'Failed to check parking lot existence' });
     }
 
     if (result.length === 0) {
@@ -171,57 +171,69 @@ app.post('/submitAvailabilityData', (req, res) => {
       dbConnection.query(insertQuery, [parkingLotId, availabilityValue], (err, insertResult) => {
         if (err) {
           console.error('Failed to insert new parking lot:', err);
-          return res.status(500).json({message: 'Failed to insert new parking lot'});
+          return res.status(500).json({ message: 'Failed to insert new parking lot' });
         }
 
         console.log('New parking lot added successfully:', insertResult);
-        res.status(200).json({message: 'New parking lot added and availability data updated successfully'});
+        res.status(200).json({ message: 'New parking lot added and availability data updated successfully' });
       });
     } else {
       const updateQuery = `UPDATE parking_lots SET fullness = ? WHERE lot_id = ?`;
 
-      dbConnection.query(updateQuery, [availabilityValue, parkingLotId], (err, updateResult) => {
+      dbConnection.query(updateQuery, [availabilityValue, String(parkingLotId)], (err, updateResult) => {
         if (err) {
           console.error('Failed to update availability data:', err);
-          return res.status(500).json({message: 'Failed to update availability data'});
+          return res.status(500).json({ message: 'Failed to update availability data' });
         }
 
         console.log('Availability data updated successfully:', updateResult);
-        res.status(200).json({message: 'Availability data updated successfully'});
+        res.status(200).json({ message: 'Availability data updated successfully' });
       });
+
     }
   });
 });
+
 
 
 
 app.post('/submitTapsData', (req, res) => {
-  console.log('posted')
-  const { parkingLotId, tapsValue } = req.body;
+  console.log('posted');
+  const { parkingLotId, tapsValue, currentTimestamp } = req.body;
 
-  if (parkingLotId == null || tapsValue == null) {
-    return res.status(400).send({message: 'missing data'});
+  if (parkingLotId == null || tapsValue == null || currentTimestamp == null) {
+      return res.status(400).send({ message: 'missing or invalid data' });
   }
 
-  const query = `UPDATE parking_lots SET taps = ? WHERE lot_id = ?`;
+  try {
+      
+      const formattedTimestamp = new Date(currentTimestamp);
 
-  dbConnection.query(query, [tapsValue, parkingLotId], (err, result) => {
-    if (err) {
-      console.error('Failed to update taps data:', err);
-      return res.status(500).send({message: 'failed to update taps data'});
-    }
+      if (isNaN(formattedTimestamp.getTime())) {
+          return res.status(400).send({ message: 'Invalid timestamp format' });
+      }
 
-    console.log('Taps data updated successfully:', result);
-    res.status(200).send({ message: 'Taps data updated successfully' });
-  });
+      const query = 'UPDATE parking_lots SET taps = ?, last_updated = ? WHERE lot_id = ?';
+
+      dbConnection.query(query, [tapsValue, formattedTimestamp, parkingLotId], (err, result) => {
+          if (err) {
+              console.error('Failed to update taps data:', err);
+              return res.status(500).send({ message: 'Failed to update taps data', error: err.message });
+          }
+
+          console.log('Taps data updated successfully:', result);
+          res.status(200).send({ message: 'Taps data updated successfully' });
+      });
+  } catch (error) {
+      console.error('Error processing request:', error);
+      return res.status(500).send({ message: 'Internal server error' });
+  }
 });
 
+
 app.get('/parking-lot/:lotId', (req, res) => {
-    const lotId = parseInt(req.params.lotId);
+    const lotId = req.params.lotId;
     
-    if (isNaN(lotId)) {
-        return res.status(400).send('Invalid lot ID');
-    }
 
     const query = 'SELECT * FROM parking_lots WHERE lot_id = ?';
 

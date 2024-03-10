@@ -333,18 +333,20 @@ function toggleTextBox(boxId) {
 
 function submitTapsData(parkingLotId) {
     var tapsValue = 1;
+    var currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
     fetch('http://localhost:3000/submitTapsData', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ parkingLotId, tapsValue }),
+        body: JSON.stringify({ parkingLotId, tapsValue, currentTimestamp }),
     })
     .then(response => response.json())
     .then(data => console.log('Taps data submitted successfully:', data))
     .catch(error => console.error('Error submitting TAPS data:', error));
 }
+
 
 function submitAvailabilityData(parkingLotId, value) {
     fetch('http://localhost:3000/submitAvailabilityData', {
