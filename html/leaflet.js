@@ -187,24 +187,12 @@ function readjson() {
 
             // parse the data
             for (var key in jsonData) {
+                console.log(key);
                 if (jsonData.hasOwnProperty(key)) {
                     var area = jsonData[key];
                     var coordinates = area.perimeter.map(function(coord){
                         return [coord[0], coord[1]];
                     });
-
-                    var permitsDropdown = '<select>';
-                    for (var i = 0; i < area.permits.length; i++) {
-                        permitsDropdown += '<option value="' + area.permits[i] + '">' + area.permits[i] + '</option>';
-                    }
-                    permitsDropdown += '</select>';
-
-                    var question = 'Do you have a permit?';
-
-                    var popupContent = '<b>' + area.name + '</b><br>Address: ' + area.address + '<br>' +
-                                       'Permits: ' + permitsDropdown + '<br>' +
-                                       question;
-
 
                     // information on the popup
                     var popupContent = `
@@ -218,27 +206,44 @@ function readjson() {
                         Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
                     `;
 
-                    // L.polygon(coordinates, { fillColor: 'rgb(0,255,0)', fillOpacity: 0.2 })
-                    //     .bindPopup(popupContent)
-                    //     .addTo(map);
-
                     var polygon = L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
                     .addTo(map)
                     .bindPopup(popupContent) 
+
                     //right click function
                     .on('contextmenu', get_menu_function(key, area));
+
+                    // a Set to keep track of added markers
+                    const addedMarkers = new Set();
+
                     // taps warning
-                    var tapspresence = get_taps(key);
-                    tapspresence.then(function(value) {
-                        //console.log(key, value);
-                        if (value == 1){
+                    // var tapspresence = await get_taps(key);
+                    // tapspresence.then(function(value) {
+                    //     console.log(key, value);
+                    //     if (value == 1){
+                    //         if (!addedMarkers.has(key)) {
+                    //             var center = polygon.getBounds().getCenter();
+                    //             L.marker(center, { icon: wicon }).addTo(map);
+                    //             addedMarkers.add(key); 
+                    //         }
+                    //     }
+                    // })
+                    // .catch(function(error) {
+                    //     console.error(error);
+                    // });
+                    
+                    var tapspresence = await get_taps(key);
+                    
+                    console.log(key, tapspresence);
+                
+                    if (tapspresence == 1) {
+                        if (!addedMarkers.has(key)) {
                             var center = polygon.getBounds().getCenter();
-                            L.marker(center, {icon: wicon}).addTo(map);
+                            L.marker(center, { icon: wicon }).addTo(map);
+                            addedMarkers.add(key);
                         }
-                    })
-                    .catch(function(error) {
-                        console.error(error);
-                    });
+                    }
+                    
                 
                 }
             }
