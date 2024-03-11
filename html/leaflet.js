@@ -217,21 +217,6 @@ function readjson() {
                     const addedMarkers = new Set();
 
                     // taps warning
-                    // var tapspresence = await get_taps(key);
-                    // tapspresence.then(function(value) {
-                    //     console.log(key, value);
-                    //     if (value == 1){
-                    //         if (!addedMarkers.has(key)) {
-                    //             var center = polygon.getBounds().getCenter();
-                    //             L.marker(center, { icon: wicon }).addTo(map);
-                    //             addedMarkers.add(key); 
-                    //         }
-                    //     }
-                    // })
-                    // .catch(function(error) {
-                    //     console.error(error);
-                    // });
-                    
                     var tapspresence = await get_taps(key);
                     
                     console.log(key, tapspresence);
@@ -243,8 +228,6 @@ function readjson() {
                             addedMarkers.add(key);
                         }
                     }
-                    
-                
                 }
             }
         } else {
