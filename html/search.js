@@ -30,6 +30,9 @@ class JsonProcessor {
         return Object.keys(this.data).filter(id => {
             const entry = this.data[id];
             return Object.keys(criteria).every(key => {
+                if (typeof entry[key] === "string") {
+                    return entry[key].toLowerCase().includes(criteria[key].toLowerCase())
+                }
                 if (Array.isArray(entry[key])) {
                     return criteria[key].every(val => entry[key].includes(val));
                 }

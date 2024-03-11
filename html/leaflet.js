@@ -4,7 +4,7 @@
 // Coordinates for UCSC
 var ucscCoordinates = [36.9914, -122.0586];
 
-// Initialize the map
+/// Initialize the map ///
 var map = L.map('map', {
     zoomControl: false
 }).setView(ucscCoordinates, 15);
@@ -14,14 +14,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// first time user guide
-// var tooltip = L.tooltip({direction: 'right'})
-//     .setLatLng([36.990706, -122.050885])
-//     .setContent('User Guide<br />Single click on the parking lot to get detail info. <br />Double click for reporting.')
-//     .addTo(map);
-// map.on('click', function () {
-//     tooltip.closeTooltip();
-// });
 document.addEventListener('DOMContentLoaded', function () {
     var helpButton = document.getElementById('help-button');
     var helpContent = document.getElementById('help-content');
@@ -39,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
 
 ///////////////////// GLOBALS /////////////////////
 var fullnesspopup;
@@ -66,6 +57,9 @@ async function reset_map() {
 function create_query(search_query) {
     var out = {}
 
+    if (search_query["name"] != "") {
+        out["name"] = search_query["name"]
+    }
     if (search_query["permits"].length > 0) {
         out["permits"] = search_query["permits"];
     }
@@ -88,7 +82,7 @@ function create_query(search_query) {
     reset_map();
 }
 
-//////////////////////////////// COLOR LOGIC ////////////////////////////////////
+/////////////////////// COLOR LOGIC ///////////////////////
 var color = 'rgb(0,255,50)';
 var avail_zero = 'rgb(0,255,0)';
 var avail_one = 'rgb(165, 255, 0)';
@@ -179,15 +173,12 @@ function readjson() {
             var jsonData = xhr.response;
 
             if (Object.keys(query).length) {
-                console.log(query);
                 const processor = new JsonProcessor(jsonData);
                 jsonData = Object.fromEntries(processor.searchByMultipleCriteria(query));
             }
-            console.log(jsonData)
 
             // parse the data
             for (var key in jsonData) {
-                console.log(key);
                 if (jsonData.hasOwnProperty(key)) {
                     var area = jsonData[key];
                     var coordinates = area.perimeter.map(function(coord){
@@ -234,7 +225,7 @@ function readjson() {
                     
                     var tapspresence = await get_taps(key);
                     
-                    console.log(key, tapspresence);
+                    // console.log(key, tapspresence);
                 
                     if (tapspresence == 1) {
                         if (!addedMarkers.has(key)) {
@@ -257,7 +248,7 @@ function readjson() {
 
 function get_menu_function(key, area) {
     return function(event) {
-        console.log(key);
+        // console.log(key);
         var rightClickPopupContent = '<b>' + area.name + 
                 '<br />' + key + 
                 '<br />' + '<button id="reportfullness">Report Fullness</button>' +

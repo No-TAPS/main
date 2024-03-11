@@ -13,7 +13,7 @@
 <body>
     <div class="sidebar">
         <div class="search-bar">
-            <input type="text" class="search-input" id="parkingLotSearch" placeholder="Search by name, lot #, permit, ...">
+            <input type="text" class="search-input" id="parking-search" placeholder="Search by name">
             
             <div class="sidebar-container" id="permit-check-boxes">
             </div>
@@ -55,7 +55,7 @@
                 </label>
             </div>
 
-            <button class="search-button" onclick="searchParkingLots()">Search</button>
+            <button class="search-button" onclick="filter_parking()">Search</button>
         </div>
     </div>
     <div id="map"></div>
@@ -65,7 +65,8 @@
     <script src="search.js"></script>
     <script src="leaflet.js"></script>
     <script>
-        function searchParkingLots() {
+        function filter_parking() {
+            const search_bar = document.getElementById("parking-search")
             const permit_boxes = document.querySelector("#permit-check-boxes");
             const adv_opt_box = document.getElementById('adv-opt-check');
             const rc_permit_box = document.getElementById('rc-permit-check');
@@ -78,7 +79,8 @@
             const checked_pm = pm_boxes.querySelectorAll('input[type="checkbox"]');
             var pm_selected = Array.from(checked_pm).map(x => x.checked);
 
-            var selected_search = {
+            var selected_filter = {
+                "name": search_bar.value,
                 "permits": permits_selected,
                 "adv_opt": adv_opt_box.checked,
                 "r_c_after_5": rc_permit_box.checked,
@@ -87,7 +89,7 @@
                 "parkmobile_eve_wknd": pm_selected[1]
             };
 
-            create_query(selected_search);
+            create_query(selected_filter);
         }
 
         const permits = ["A", "B", "C", "C111A", "C119", "C152", "C153", "C154", "C155", "C156", "C157", "C158", "C159", "C162", "C206", "C301", "R", "RMC", "EV", "MC", "N", "NC", "HC", "FSH", "Medical"];
