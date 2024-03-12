@@ -195,3 +195,9 @@
     right: 10px;
     cursor: pointer;
 }
+
+.bool-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
