@@ -572,7 +572,7 @@
         "152": {
             "name": "Crown-Merill Apartments",
             "address": "East Rd, Santa Cruz, CA 95060",
-            "permits": ["A", "B", "C152", "C153", "C154", "C155", "MC", "N", "NC", "HC", "Medical"],
+            "permits": ["A", "B", "C152-155","MC", "N", "NC", "HC", "Medical"],
             "r_c_after_5": false,
             "parkmobile_hourly": 2,
             "parkmobile_daily": false,
@@ -592,7 +592,7 @@
         "157": {
             "name": "Graduate Student Apartments",
             "address": "645 Heller Dr, Santa Cruz, CA 95064",
-            "permits": ["Lot 157 permit", "MC", "HC"],
+            "permits": ["C157", "MC", "HC"],
             "r_c_after_5": false,
             "parkmobile_hourly": 0,
             "parkmobile_daily": false,

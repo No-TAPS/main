@@ -43,7 +43,7 @@ var wicon = L.icon({
 });
 
 /////////////////////// AUTO UPDATE LOGIC ///////////////////////
-setInterval(reset_map, 60000);
+setInterval(reset_map, 600000);
 async function reset_map() {
     map.eachLayer(await function(layer){
         if(layer instanceof L.Polygon && !(layer instanceof L.Rectangle) ){
@@ -63,19 +63,17 @@ function create_query(search_query) {
     if (search_query["permits"].length > 0) {
         out["permits"] = search_query["permits"];
     }
-    if (search_query["adv_opt"]) {
-        if (search_query["r_c_after_5"]) {
-            out["r_c_after_5"] = search_query["r_c_after_5"];
-        }
-        if (search_query["parkmobile_hourly"]) {
-            out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
-        }
-        if (search_query["parkmobile_daily"]) {
-            out["parkmobile_daily"] = search_query["parkmobile_daily"];
-        }
-        if (search_query["parkmobile_eve_wknd"]) {
-            out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
-        }
+    if (search_query["r_c_after_5"]) {
+        out["r_c_after_5"] = search_query["r_c_after_5"];
+    }
+    if (search_query["parkmobile_hourly"] > 0) {
+        out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
+    }
+    if (search_query["parkmobile_daily"]) {
+        out["parkmobile_daily"] = search_query["parkmobile_daily"];
+    }
+    if (search_query["parkmobile_eve_wknd"]) {
+        out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
     }
 
     query = out;
@@ -187,14 +185,13 @@ function readjson() {
 
                     // information on the popup
                     var popupContent = `
-                        <b>Area Number: ${key}</b><br>
-                        Name: ${area.name}<br>
+                        <b>${area.name} (${key})</b><br>
                         Address: ${area.address}<br>
                         Permits: ${area.permits.join(', ')}<br>
-                        R/C permit After 5: ${area.r_c_after_5}<br>
+                        R/C permit After 5: ${get_icon(area.r_c_after_5)}<br>
                         Parkmobile Hourly: ${area.parkmobile_hourly}<br>
-                        Parkmobile Daily: ${area.parkmobile_daily}<br>
-                        Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
+                        Parkmobile Daily: ${get_icon(area.parkmobile_daily)}<br>
+                        Parkmobile Evening/Weekend: ${get_icon(area.parkmobile_eve_wknd)}
                     `;
 
                     var polygon = L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
@@ -273,6 +270,13 @@ function get_menu_function(key, area) {
                 .openOn(map);
         });
     }
+}
+
+function get_icon(value) {
+    if (value) {
+        return `<img class="bool-icon" src="check.png">`
+    }
+    return `<img class="bool-icon" src="remove.png">`
 }
 
 function processDataAndDisplayPolygons(data) {

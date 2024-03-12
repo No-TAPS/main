@@ -46,6 +46,11 @@
     z-index: 2; 
 }
 
+.side-logo {
+    overflow: hidden;
+    width: 150px;
+    height: 136px;
+}
 
 .search-bar {
     width: 80%;
@@ -76,6 +81,26 @@
     display: inline-block;
     flex-wrap: wrap;
  }
+
+.adv-button {
+    background-color: #191919;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 2px 5px 2px;
+    margin: 2px 1px 10px 1px;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.active, .adv-button:hover {
+    background-color: #373737;
+}
+
+#adv-opts {
+    display: none;
+    overflow: hidden;
+}
 
 .search-button {
     width: 100%;
@@ -155,7 +180,7 @@
 .submit-button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #c71e12;
     color: white;
     cursor: pointer;
 }
@@ -169,4 +194,10 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+.bool-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
 }
