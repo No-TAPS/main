@@ -83,8 +83,8 @@
  }
 
 .adv-button {
-    background-color: #eee;
-    color: #444;
+    background-color: #191919;
+    color: #fff;
     cursor: pointer;
     padding: 5px 2px 5px 2px;
     margin: 2px 1px 10px 1px;
@@ -94,8 +94,8 @@
 }
 
 .active, .adv-button:hover {
-    background-color: #ccc;
-  }
+    background-color: #373737;
+}
 
 #adv-opts {
     display: none;
