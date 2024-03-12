@@ -86,7 +86,8 @@
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    margin: 5px auto;
+    padding: 5px 2px 5px 2px;
+    margin: 2px 1px 10px 1px;
     width: 100%;
     border: none;
     outline: none;
