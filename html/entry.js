@@ -142,65 +142,87 @@ const initializeParkingLotData = () => {
 connectToDatabase();
 
 // POST endpoint to receive parking lot data and write it to the database
+// Route to insert new parking lot data
 app.post('/parking-lot', (req, res) => {
+  // Destructure required fields from the request body
   const { lotId, fullness, taps } = req.body;
 
+  // Validate presence of all required fields
   if (lotId == null || fullness == null || taps == null) {
+    // Respond with 400 status if any field is missing
     return res.status(400).send('Missing data for lotId, fullness, or availability');
   }
 
+  // SQL query to insert new parking lot data
   const query = `INSERT INTO parking_lots (lot_id, fullness, taps) VALUES (?, ?, ?)`;
 
+  // Execute the query against the database
   dbConnection.query(query, [lotId, fullness, taps], (err, result) => {
     if (err) {
+      // Log and respond with error message if query execution fails
       console.error('Failed to write parking lot data:', err);
       return res.status(500).send('Failed to write parking lot data');
     }
+    // Log success and send a 201 response with message and insert ID
     console.log("Parking lot data written successfully:", result);
     res.status(201).send({ message: 'Parking lot data written successfully', id: result.insertId });
   });
 });
 
+// Route to submit or update parking lot availability data
 app.post('/submitAvailabilityData', (req, res) => {
+  // Destructure required fields from the request body
   const { parkingLotId, availabilityValue } = req.body;
 
+  // Validate presence of all required fields
   if (parkingLotId == null || availabilityValue == null) {
+    // Respond with 400 status if any field is missing
     return res.status(400).json({ message: 'Missing data for parkingLotId or availabilityValue' });
   }
 
+  // SQL query to check existence of the parking lot
   const checkQuery = `SELECT lot_id FROM parking_lots WHERE lot_id = ?`;
 
+  // Execute the check query against the database
   dbConnection.query(checkQuery, [parkingLotId], (err, result) => {
     if (err) {
+      // Log and respond with error message if check query execution fails
       console.error('Error checking for parking lot existence:', err);
       return res.status(500).json({ message: 'Failed to check parking lot existence' });
     }
 
     if (result.length === 0) {
+      // SQL query to insert new parking lot if it does not exist
       const insertQuery = `INSERT INTO parking_lots (lot_id, fullness, taps) VALUES (?, ?, 0)`;
 
+      // Execute the insert query
       dbConnection.query(insertQuery, [parkingLotId, availabilityValue], (err, insertResult) => {
         if (err) {
+          // Log and respond with error message if insert operation fails
           console.error('Failed to insert new parking lot:', err);
           return res.status(500).json({ message: 'Failed to insert new parking lot' });
         }
 
+        // Log success and respond with 200 status and success message
         console.log('New parking lot added successfully:', insertResult);
         res.status(200).json({ message: 'New parking lot added and availability data updated successfully' });
       });
     } else {
+      // SQL query to update existing parking lot's availability
       const updateQuery = `UPDATE parking_lots SET fullness = ? WHERE lot_id = ?`;
 
+      // Execute the update query
       dbConnection.query(updateQuery, [availabilityValue, String(parkingLotId)], (err, updateResult) => {
         if (err) {
+          // Log and respond with error message if update operation fails
           console.error('Failed to update availability data:', err);
           return res.status(500).json({ message: 'Failed to update availability data' });
         }
 
+        // Log success and respond with 200 status and success message
         console.log('Availability data updated successfully:', updateResult);
         res.status(200).json({ message: 'Availability data updated successfully' });
       });
-
     }
   });
 });
