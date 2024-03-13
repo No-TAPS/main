@@ -68,22 +68,23 @@ async function reset_map() {
 function create_query(search_query) {
     var out = {}
 
+    if (search_query["name"] != "") {
+        out["name"] = search_query["name"]
+    }
     if (search_query["permits"].length > 0) {
         out["permits"] = search_query["permits"];
     }
-    if (search_query["adv_opt"]) {
-        if (search_query["r_c_after_5"]) {
-            out["r_c_after_5"] = search_query["r_c_after_5"];
-        }
-        if (search_query["parkmobile_hourly"]) {
-            out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
-        }
-        if (search_query["parkmobile_daily"]) {
-            out["parkmobile_daily"] = search_query["parkmobile_daily"];
-        }
-        if (search_query["parkmobile_eve_wknd"]) {
-            out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
-        }
+    if (search_query["r_c_after_5"]) {
+        out["r_c_after_5"] = search_query["r_c_after_5"];
+    }
+    if (search_query["parkmobile_hourly"] > 0) {
+        out["parkmobile_hourly"] = search_query["parkmobile_hourly"];
+    }
+    if (search_query["parkmobile_daily"]) {
+        out["parkmobile_daily"] = search_query["parkmobile_daily"];
+    }
+    if (search_query["parkmobile_eve_wknd"]) {
+        out["parkmobile_eve_wknd"] = search_query["parkmobile_eve_wknd"];
     }
 
     query = out;
