@@ -1,21 +1,28 @@
+// Importing required modules
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const cors = require('cors');
+
+// Creating an Express application
 const app = express();
+
+// Port for the server
 const port = 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 app.use(cors()); 
 
+// Functions for json file reading
 app.get('/ParkingCordsJson', (req, res) => {
     const path = './parking_data.json'; 
     const file = fs.createReadStream(path);
     file.pipe(res);
 });
 
+// OLD Function
 app.get('/ParkingStatus', (req, res) => {
   const path = './mapData.json'; 
   const file = fs.createReadStream(path);
@@ -31,6 +38,7 @@ const dbConfig = {
   
 };
 
+// Name of the database
 const dbName = 'parkingLots';
 
 
@@ -199,9 +207,12 @@ app.post('/submitAvailabilityData', (req, res) => {
 
 
 
-
+// Handle submission of taps data via POST request
 app.post('/submitTapsData', (req, res) => {
+  // Debugging
   console.log('posted');
+
+  // Destructuring request body to extract required data
   const { parkingLotId, tapsValue, currentTimestamp } = req.body;
 
   if (parkingLotId == null || tapsValue == null || currentTimestamp == null) {
@@ -209,21 +220,25 @@ app.post('/submitTapsData', (req, res) => {
   }
 
   try {
-      
+      // Parsing timestamp to ensure it's in the correct format
       const formattedTimestamp = new Date(currentTimestamp);
 
+      // Checking if the parsed timestamp is valid
       if (isNaN(formattedTimestamp.getTime())) {
           return res.status(400).send({ message: 'Invalid timestamp format' });
       }
 
+      // SQL query to update taps data for the specified parking lot
       const query = 'UPDATE parking_lots SET taps = ?, last_updated = ? WHERE lot_id = ?';
 
+      // Executing the SQL query with provided data
       dbConnection.query(query, [tapsValue, formattedTimestamp, String(parkingLotId)], (err, result) => {
           if (err) {
               console.error('Failed to update taps data:', err);
               return res.status(500).send({ message: 'Failed to update taps data', error: err.message });
           }
 
+          // Logging success message if update is successful
           console.log('Taps data updated successfully:', result);
           res.status(200).send({ message: 'Taps data updated successfully' });
       });
@@ -234,18 +249,23 @@ app.post('/submitTapsData', (req, res) => {
 });
 
 
+// Get parking lot data by lotId
 app.get('/parking-lot/:lotId', (req, res) => {
+
+    // Extracting lotId from request parameters
     const lotId = req.params.lotId;
     
-
+    // SQL query to select parking lot data based on lotId
     const query = 'SELECT * FROM parking_lots WHERE lot_id = ?';
 
+    // Executing the SQL query with the provided lotId
     dbConnection.query(query, [lotId], (err, results) => {
         if (err) {
             console.error('Failed to retrieve parking lot data:', err);
             return res.status(500).send('Failed to retrieve parking lot data');
         }
 
+        // If parking lot data is found, sending 200 status with the first data
         if (results.length > 0) {
             res.status(200).json(results[0]);
         } else {
