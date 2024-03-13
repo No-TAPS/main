@@ -186,14 +186,13 @@ function readjson() {
 
                     // information on the popup
                     var popupContent = `
-                        <b>Area Number: ${key}</b><br>
-                        Name: ${area.name}<br>
+                        <b>${area.name} (${key})</b><br>
                         Address: ${area.address}<br>
                         Permits: ${area.permits.join(', ')}<br>
-                        R/C permit After 5: ${area.r_c_after_5}<br>
+                        R/C permit After 5: ${get_icon(area.r_c_after_5)}<br>
                         Parkmobile Hourly: ${area.parkmobile_hourly}<br>
-                        Parkmobile Daily: ${area.parkmobile_daily}<br>
-                        Parkmobile Evening/Weekend: ${area.parkmobile_eve_wknd}
+                        Parkmobile Daily: ${get_icon(area.parkmobile_daily)}<br>
+                        Parkmobile Evening/Weekend: ${get_icon(area.parkmobile_eve_wknd)}
                     `;
 
                     var polygon = L.polygon(coordinates, { fillColor: await get_color(key), fillOpacity: 0.3 })
@@ -277,6 +276,13 @@ function get_menu_function(key, area) {
                 .openOn(map);
         });
     }
+}
+
+function get_icon(value) {
+    if (value) {
+        return `<img class="bool-icon" src="check.png">`
+    }
+    return `<img class="bool-icon" src="remove.png">`
 }
 
 ////////// Function to submit taps data ////////////
